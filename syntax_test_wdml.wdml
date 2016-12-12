@@ -1,0 +1,2286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ == ============================================================================
+ == | WonderTek [ 网络无处不在，沟通及时到达 ]
+ == ============================================================================
+ == | Copyright (c) 2014, WonderTek, Inc. All Rights Reserved.
+ == ============================================================================
+ == | Author: xxxx <xxxx@xxxx.com>
+ == ============================================================================
+ == | Desc: 入口页（启动页）
+ == ============================================================================
+-->
+<root>
+    <body resolution="640,1136" BuildChildrenFinished="bodyBuildChildrenFinished" OnSpriteEvent="bodyOnSpriteEvent" OnPluginEvent="bodyOnPluginEvent" transparent="true" >
+        <node name="mainNode" rect="0,0,640,1136" enable="true" active="true" OnKeyUp="mainNodeOnKeyUp" layouttype="1" extendstyle="1111">
+            <shadow  rect='0,0,640,1136' extendstyle='1111' color='#ffffff' alpha='255'/>
+            <image name='Wimage' rect="0,0,640,214" extendstyle="1511" style='autosize' src="file://image/640_1136.png"/>
+            <image rect="0,0,640,914" extendstyle="1111" style='minsize' data="0" src='' name="welcome"/>
+            <button border="0" rect="0,0,640,914" extendstyle="1111" OnSelect="clickUpload" > 
+                 <image rect="0,0,640,914" extendstyle="1111" style='autosize' data="0" src='' name="advImg"/>
+            </button>
+            <node name="spreadNode" rect="0,0,640,150" extendstyle ="1111" visible="0" enable="0" active="0" border="0">  
+                  <node name ="spreadImg" rect="0,0,56,24" border="0" extendstyle="1111"> 
+                     <shadow rect='0,0,0,0' extendstyle='0077' color="#f2001e" alpha="150" />
+                     <label  rect="0,0,56,24" extendstyle="1111" text="广告" font-size="20" v-align="center"  h-align="center" color="#ffffff"  />
+                  </node>
+                  <button name="wecomImgGoBtn" border="0" rect="480,44,116,56" extendstyle="1010" OnSelect="gohome" >                        
+                     <node rect="0,0,116,56" extendstyle='1010' >
+                          <image rect="0,0,116,56" src="file://image/Rectangle329@2x.png"  extendstyle="1010" style="autosize"/>
+                          <!--<shadow rect='0,0,116,56' corner="10,10" extendstyle='1111' color="#00000" alpha="150" />-->
+                          <label name='skipBtnTitle' rect='0,0,116,56'  text="" font-size="28" color="#ffffff" extendstyle="1010" v-align="center"  h-align="center"/>
+                     </node>
+                 </button>     
+            </node>
+            <node name="guidePageNode" rect="0,0,640,1136" extendstyle="1111" visible='0' enable='0'  >
+                  <panorama name="panorama" rect="0,0,640,1136" extendstyle="1111"  >
+                        <panoramaitem name="item1" rect="0,0,640,1136" extendstyle="1111" OnSelect=''>
+                            <button rect="0,0,640,1136" style="autosize" src="" extendstyle="1111" OnMouseDown="panoramaOnMouseDown" OnMouseMove="panoramaOnMouseMove" OnMouseUp="panoramaOnMouseUp"/>
+                            <image rect="0,0,640,1136" extendstyle="1111" style='autosize' src="file://image/guide_guidepage1.png"/>
+                        </panoramaitem>
+                        <panoramaitem name="item2" rect="0,0,640,1136" extendstyle="1111" OnSelect=''>
+                            <button rect="0,0,640,1136" style="autosize" src="" extendstyle="1111" OnMouseDown="panoramaOnMouseDown" OnMouseMove="panoramaOnMouseMove" OnMouseUp="panoramaOnMouseUp"/>
+                            <image rect="0,0,640,1136" extendstyle="1111" style='autosize' src="file://image/guide_guidepage2.jpg"/>
+                        </panoramaitem>
+                        <panoramaitem name="item3" rect="0,0,640,1136" extendstyle="1111" OnSelect=''>
+                            <button rect="0,0,640,1136" style="autosize" src="" extendstyle="1111" OnMouseDown="panoramaOnMouseDown" OnMouseMove="panoramaOnMouseMove" OnMouseUp="panoramaOnMouseUp"/>
+                            <image rect="0,0,640,1136" extendstyle="1111" style='autosize' src="file://image/guide_guidepage3.jpg"/>
+                            <button name="useBtn" rect="0,60,640,1136" normal='' sel=''  visible='true' enable='true' extendstyle='1111' OnSelect='useBtnFun'>
+                            </button>
+                        </panoramaitem>
+                 </panorama>
+            </node>
+  
+
+            <!--版本更新-->
+            <node rect='0,0,640,1136' extendstyle='1111' name='downloaddialog' visible="0" enable="0" active="0">
+                <button rect='0,0,0,0' extendstyle='1177' OnSelect='hideVersionNode' >  
+                    <shadow rect='0,0,0,0' extendstyle='0077' color="#0" alpha="150" />
+                </button>  
+                <node rect='0,0,580,220' extendstyle='9911'>
+                    <image rect='0,0,0,0' extendstyle='1177' style='sudoku-auto' sudoku='4,4,4,4' src='file://image/kuang2@2x.png'/>
+                    <label rect='40,30,500,40'  name='updateTitle' extendstyle='1111' color='#444444' font-size='32' text='正在下载中...' v-align='center'/>
+                    <label name="processLabel" rect="490,70,150,30" extendstyle="1111" h-align="centert" v-align="center" font-size="28" color="#666666" text="0%"/>
+                    <node rect="35,100,510,6" extendstyle="1111" >
+                        <shadow rect="0,0,0,6" extendstyle="1177" color="#888888" alpha="255" name='processShadow'/>
+                        <shadow name="processBar" rect="0,0,0,6" extendstyle="1117" color="#00ffdf" alpha="255" visible="1" enable="0" active="0"/>
+                    </node>
+                    <shadow rect='0,139,580,2' extendstyle='1111' color="#dfdfdf" alpha="250" />
+                    <button name='cancelUpdateBtn' rect='0,140,580,80' extendstyle='1111' OnSelect='cancelUpdate' >
+                            <label rect = '0,0,0,0' extendstyle='1177' v-align='center' h-align='center' text='取消' font-size='35' color='#00ffdf'/>
+                    </button>
+                </node>
+            </node>
+
+            <node rect='0,0,640,1136' extendstyle='1111' name='versionNode'  visible='0' enable='0' >
+                <button rect='0,0,640,1136' extendstyle='1111'>  
+                    <shadow rect='0,0,0,0' extendstyle='1177' color="#000000" alpha="150" />
+                </button> 
+                <node name='versionDetail' border='0' rect='40,300,560,400' extendstyle='1111'>
+                    <image name='bgImage' rect='0,0,0,0' extendstyle='1177' style='sudoku-auto' sudoku='4,4,4,4' src='file://image/kuang2@2x.png'/>
+                    <label rect='0,0,560,100'  name='updateTitle' extendstyle='1111' color='#444444' font-size='32' text='版本升级' v-align='center' h-align='center'/>
+                    <shadow rect='0,100,560,1' extendstyle='1114' color="#00ffdf" alpha="250" />
+                    <listview border='0' name='updateList' rect='20,110,520,100' extendstyle='1111' limit='true' scroll="auto" scrollbar_slider="file://image/GUI_slider.png,5,30" >
+                    </listview>
+                    <!-- 不再提示-->
+                    <node rect="10,200,405,100" extendstyle="1111" name='upgradeTips' visible='0' enable='0' >
+                        <button name="agreementSel" rect="0,0,405,100" extendstyle="1111" OnSelect="agreementSelOnSelect" data="0">
+                            <image name="ageSelPic" rect="25,35,32,32" extendstyle="1100" style="autosize" src="file://image/check_box.png"/>
+                            <label rect="70,30,405,45" extendstyle="1111" text="此版本不再提示" h-align="left" v-align="center" font-family="FZZYSK" font-size="28" color="#c8c8c8"/>
+                        </button> 
+                    </node>
+                    
+                    <node name='btnAreaNode' border='3' rect="0,300,560,100" extendstyle="1111">
+                        <shadow rect="0,0,560,1" color="#00ffdf" alpha="255" extendstyle="1114"/>
+                        <shadow name='shadowName' rect="280,0,1,100" border='0' visible='0' color="#00ffdf" alpha="255" extendstyle="1141"/>
+                        
+                        <button name='closeBtn' rect='0,0,280,100' extendstyle='1111' sel="s" OnSelect='closeOnselect' >
+                            <shadow name='s' rect='0,0,0,0' extendstyle='1177' color='#dedede' alpha='255' />
+                            <label border='0' rect="0,0,0,0" extendstyle="1177" text="取消" font-size="30" color="#444444" v-align="center" h-align="center"/>
+                        </button>
+
+                        <button name='downBtn' rect='280,0,280,100' extendstyle='1111' sel="s" OnSelect='downloadNewApk' >
+                            <shadow name='s' rect='0,0,0,0' extendstyle='1177' color='#dedede' alpha='255' />
+                            <label border='0' rect="0,0,280,100" extendstyle="1111" text="下载" font-size="30" color="#444444" v-align="center" h-align="center"/>
+                        </button>
+                    </node>
+                </node>
+            </node>
+
+            <node rect='0,0,520,100' extendstyle='1111' visible='0' enable='0' name='versionItem'>
+                <textarea name='messageText' rect='0,0,520,100' extendstyle='1010' color='#7a7a7a' font-size='28px'  text=''  line-height='35' v-align="top" autoextend ="true"/>
+            </node>
+            <!--分享 -->
+            <node name='palyOKNode' rect="0,0,640,1136" border="0" visible="0" extendstyle="1010" >
+                <image rect="0,0,640,1136" border="0" src="file://image/ima_shiping2@2x.png" extendstyle="1010" style="autosize" />
+                <node name="shareNode" rect="0,844,640,292"  visible="0" enable="0" active="0" OnKeyUp="mainNodeOnKeyUp" layouttype="1" extendstyle="1111">
+                    <shadow name="shadowbg" rect="0,0,0,0" extendstyle="1077" alpha="100" color="#000000" />                   
+                    <node rect="0,0,640,60" border="0" extendstyle="1010">
+                        <shadow  rect="194,0,74,2" extendstyle="1911" alpha="225" color="#2C4F6C" />
+                        <shadow  rect="372,0,74,2" extendstyle="1911" alpha="225" color="#2C4F6C" />
+                        <label rect='0,0,100,60' text="分享到" font-size="28" color="#ffffff" extendstyle="9910" v-align="center" h-align="center" />
+                    </node>
+                    <node rect="0,60,640,130" border="0" extendstyle="1010">
+                        <button  border="0"  data="1" rect="32,10,76,76" extendstyle="1010" OnSelect="shareFriendTaye" normal="n" sel="s" >
+                            <image name="n"  rect="0,0,76,76" src="file://image/icon-1@2x.png" extendstyle="1010" style="autosize"/>
+                        </button>
+                        <label name="l" rect='30,90,80,30' border="0" text="微信好友" font-size="20" color="#ffffff" extendstyle="1010" v-align="center"  h-align="center"/>
+                        <button  border="0"  data="2" rect="156,10,76,76" extendstyle="1010" OnSelect="shareFriendTaye" normal="n" sel="s" >
+                            <image name="n"  rect="0,0,76,76" src="file://image/icon-2@2x.png" extendstyle="1010" style="autosize"/>
+                            </button>
+                        <label name="l" rect='154,90,80,30' border="0" text="朋友圈" font-size="20" color="#ffffff" extendstyle="1010" v-align="center"  h-align="center"/>                    
+                        <button  border="0"  data="4" rect="280,10,76,76" extendstyle="1010" OnSelect="shareFriendTaye" normal="n" sel="s" >
+                            <image name="n"  rect="0,0,76,76" src="file://image/icon-3@2x.png" extendstyle="1010" style="autosize"/>
+                        </button>
+                        <label name="l" rect='278,90,80,30' border="0" text="QQ好友" font-size="20" color="#ffffff" extendstyle="1010" v-align="center"  h-align="center"/>                    
+                        <button  border="0"  data="5" rect="404,10,76,76" extendstyle="1010" OnSelect="shareFriendTaye" normal="n" sel="s" >
+                            <image name="n"  rect="0,0,76,76" src="file://image/icon-4@2x.png" extendstyle="1010" style="autosize"/>              
+                        </button>
+                        <label name="l" rect='402,90,80,30' border="0" text="QQ空间" font-size="20" color="#ffffff" extendstyle="1010" v-align="center"  h-align="center"/>                    
+                        <button  border="0"  data="3" rect="528,10,76,76" extendstyle="1010" OnSelect="shareFriendTaye" normal="n" sel="s" >
+                            <image name="n"  rect="0,0,76,76" src="file://image/icon-5@2x.png" extendstyle="1010" style="autosize"/>                        
+                        </button>
+                        <label name="l" rect='526,90,80,30' border="0" text="新浪微博" font-size="20" color="#ffffff" extendstyle="1010" v-align="center"  h-align="center"/>
+                    </node>
+                    <node rect="0,192,640,100" border="0" extendstyle="1010">
+                        <shadow  rect="0,0,640,2" extendstyle="1111" alpha="225" color="#2C4F6C" />
+                        <button  border="0" rect="250,0,140,80" extendstyle="1010" OnSelect="backBtutton" normal="n" sel="s" >
+                            <label rect='0,0,0,0' border="0" text="取消" font-size="28" color="#a2aaaf" extendstyle="1077" v-align="center"  h-align="center"/>
+                        </button>
+                    </node>
+                </node>
+                <!--分享导航-->
+                <node name="shareBarNode" rect="0,844,640,292"  visible="0" enable="0" active="0" OnKeyUp="mainNodeOnKeyUp" layouttype="1" extendstyle="1111">
+                    <shadow name="shadowbg" rect="0,0,0,0" extendstyle="1077" alpha="100" color="#000000" />
+                    <node name="userCount" rect="0,40,640,30" border="0" extendstyle="1010">
+                        <label rect='0,0,355,30' border="0" text="终于等到你,咪咕听书第" font-size="26" color="#ffffff" extendstyle="1010" v-align="center"  h-align="right"/>
+                        <label name="userCounts" rect='360,0,105,30' border="0" text="1293041" font-size="26" color="#00ffdf" extendstyle="1010" v-align="center"  h-align="center"/>
+                        <label rect='470,0,105,30' border="0" text="位用户" font-size="26" color="#ffffff" extendstyle="1010" v-align="center"  h-align="left"/>
+                    </node>
+                    <node rect="0,140,640,65" border="0" extendstyle="1010">
+                        <button  border="0" rect="89,0,206,65" extendstyle="1010" OnSelect="shareFriendButton" normal="n" sel="s" >                        
+                            <node name='n' rect="0,0,206,65" extendstyle='1010' >
+                                <image rect="0,0,206,65" src="file://image/button_share_normal@2x.png" extendstyle="1010" style="autosize"/>
+                                <image rect="39,22,24,24" src="file://image/icon_share@2x.png"   extendstyle="1010" style="autosize"/>
+                                <label rect='70,17,150,30'  text="分享好友" font-size="26" color="00FFDF" extendstyle="1010" v-align="center"  h-align="left"/>
+                            </node>
+                            <node name='s' rect="0,0,206,65" extendstyle='1010' >
+                                <image rect="0,0,206,65" src="file://image/button_listen_pressed@2x.png" extendstyle="1010" style="autosize"/>
+                                <image rect="39,22,24,24" src="file://image/icon_share2@2x.png"   extendstyle="1010" style="autosize"/>
+                                <label rect='70,17,150,30'  text="分享好友" font-size="26" color="#082943" extendstyle="1010" v-align="center"  h-align="left"/>
+                            </node>
+                        </button>
+                        <button  border="0" rect="345,0,206,65" extendstyle="1010" OnSelect="goButton" normal="n" sel="s" >
+                            <node name='n' rect="0,0,206,65" extendstyle='1010' >
+                                <image rect="0,0,206,65" src="file://image/button_share_normal@2x.png" extendstyle="1010" style="autosize"/>
+                                <image rect="39,22,24,24" src="file://image/icon_listen2@2x.png"   extendstyle="1010" style="autosize"/>
+                                <label rect='70,17,150,30'  text="马上听书" font-size="26" color="00FFDF" extendstyle="1010" v-align="center"  h-align="left"/>
+                            </node>
+                            <node name='s' rect="0,0,206,65" extendstyle='1010' >
+                                <image rect="0,0,206,65" src="file://image/button_listen_pressed@2x.png" extendstyle="1010" style="autosize"/>
+                                <image rect="39,22,24,24" src="file://image/icon_listen@2x.png"   extendstyle="1010" style="autosize"/>
+                                <label rect='70,17,150,30'  text="马上听书" font-size="26" color="#082943" extendstyle="1010" v-align="center"  h-align="left"/>
+                            </node>        
+                        </button>                
+                    </node>
+                </node>     
+            </node> 
+        </node>    
+        <window name="windowNodes" visible="1" rect="0,0,640,1136" extendstyle="1111" >
+            <button name="goNode" border="0" visible="0" rect="512,20,108,62" extendstyle="1010" OnSelect="letGo" normal="n" sel="s" >                        
+                <node name='n' rect="0,0,108,62" extendstyle='1010' >
+                    <image rect="0,0,108,62" src="file://image/button_tiaoguo@2x.png"   extendstyle="1010" style="autosize"/>
+                    <label rect='0,0,108,62'  text="跳过" font-size="28" color="a2aaaf" extendstyle="1010" v-align="center"  h-align="center"/>
+                </node>
+                <node name='s' rect="0,0,108,62" extendstyle='1010' >                   
+                    <image rect="0,0,108,62" src="file://image/button_tiaoguo_normal@2x.png"   extendstyle="1010" style="autosize"/>
+                    <label rect='0,0,108,62'  text="跳过" font-size="28" color="a2aaaf" extendstyle="1010" v-align="center"  h-align="center"/>
+                </node>
+            </button>     
+        </window>
+        <body rect='0,0,0' text=""  ></body>
+    </body>
+
+    <![CDATA[
+
+require 'com_listencp_client.common.framework'
+
+local rootSprite
+local hasGoHome = 0
+local isCanGoHome = true
+local isMsgPush = false
+local haveNewCommon = true
+local haveNewListItem = true
+local firstGoHome = false
+
+---------------------------------------callbacks--------------------------------
+-- @brief root子节点创建完事件
+function bodyBuildChildrenFinished(sprite)
+    rootSprite = sprite
+    downloaddialog = Sprite:findChild(sprite, 'downloaddialog')
+    versionNode = Sprite:findChild(sprite, 'versionNode')
+    updateList = Sprite:findChild(sprite, 'updateList')
+    versionItem = Sprite:findChild(sprite, 'versionItem')
+    versionDetail = Sprite:findChild(sprite, 'versionDetail')
+    upgradeTips = Sprite:findChild(sprite, 'upgradeTips')
+    btnAreaNode = Sprite:findChild(sprite, 'btnAreaNode')
+    bgImage = Sprite:findChild(rootSprite,'bgImage')
+    welcome = Sprite:findChild(rootSprite, 'welcome')
+    Wimage = Sprite:findChild(rootSprite, 'Wimage')
+    guidePageNode=Sprite:findChild(rootSprite,"guidePageNode")
+    windowNodes = Sprite:findChild(rootSprite,'windowNodes')
+    shareNode = Sprite:findChild(rootSprite,'shareNode')
+    shareBarNode = Sprite:findChild(rootSprite,'shareBarNode')
+    userCount = Sprite:findChild(rootSprite,'userCounts')
+    palyOKNode = Sprite:findChild(rootSprite,'palyOKNode')
+    goNode = Sprite:findChild(rootSprite,'goNode')
+    videoUrl = saveFileNames['md5Value']..'\/video\/fristStartApp.mp4'
+    skipBtnTitle = Sprite:findChild(sprite, 'skipBtnTitle')
+    spreadNode = Sprite:findChild(sprite, 'spreadNode')
+    wecomImgGoBtn = Sprite:findChild(sprite, 'wecomImgGoBtn') 
+    advImg = Sprite:findChild(sprite, 'advImg') 
+
+    setHttpParam()  --初始化一些参数
+    Timer:set(123, 20000, "finishLoadDataEnterApp")
+    connectNetwork()   --联网
+    -- Timer:set(321, 500, "requestAdviceData")
+    -- playUrl = getDownloadPath().."\/fristStartApp.mp4"
+    -- playUrl = Config:get("server").."/apk/fristStartApp.mp4"
+    initBLListener()--初始化监听器 
+    backgroundPlay:setbgPlayListen("backgroundPlayListen")
+end
+
+-- @brief root节点消息方法
+function bodyOnSpriteEvent(msg, param)
+    if msg == MSG_ACTIVATE then -- 页面激活
+        -- timeId(Alias.home,true,0) 
+        if Config:get('first_launch') == '1'  then   --当页面激活,如果是首次启动
+            Util:logwrite("=========first_launch===========")
+            Timer:cancel(123)                        --则取消123定时器        
+            setAllShoworHide(guidePageNode,1)        --展示应用介绍海报
+            if IO:fileExist(videoUrl) then
+                Util:logwrite("=========playUrl====true=======",IO:fileExist(playUrl))
+                setAllShoworHide(goNode,1)--显示跳过视频控件按钮
+                createPlayer()
+            else
+                setAllShoworHide(guidePageNode,1)
+            end
+        end 
+        homeTitleData = Util:stringToTable(getTableFromLocal(saveFileNames['honeTileData'], "discoverNode"))
+        hoomeAllTitleData = Util:stringToTable(getTableFromLocal(saveFileNames['honeTileData'], "assortmentNode"))
+        if not homeTitleData or not next(homeTitleData) then
+            homeTitleData = {
+                     [0]={
+                        ["type"]="",
+                         ["detailUrl"]="http://wap.cmread.com/tingclient/publish/clt/resource/cltif/v2/discoverIndex.jsp?nodeId=115&pageSectionNodeId=115-&pageSectionContId=&pageSectionIndexId=1&fromIndex=Y",
+                         ["nodeName"]="精品"
+                     },
+                     [1]={
+                        ["type"]="",
+                         ["detailUrl"]="http://wap.cmread.com/tingclient/publish/clt/resource/cltif/v3/subjectActiveList.jsp?nodeId=1020&pageSectionNodeId=1020-&pageSectionContId=&pageSectionIndexId=2&fromIndex=Y",
+                         ["nodeName"]="专题"
+                     },
+                     [2]={
+                        ["type"]="",
+                         ["detailUrl"]="http://wap.cmread.com/tingclient/publish/clt/resource/cltif/v3/livingFrontPage.jsp?nodeId=1191&pageSectionNodeId=1191-&pageSectionContId=&pageSectionIndexId=3&fromIndex=Y",
+                         ["nodeName"]="直播"
+                     },
+                     [3]={
+                        ["type"]="",
+                         ["detailUrl"]="http://wap.cmread.com/tingclient/publish/clt/resource/cltif/v2/discoverIndex.jsp?nodeId=110&pageSectionNodeId=110-&pageSectionContId=&pageSectionIndexId=4&fromIndex=Y",
+                         ["nodeName"]="主播"
+                     },
+                     [4]={
+                        ["type"]="1",
+                         ["detailUrl"]="http://wap.cmread.com/tingclient/publish/clt/resource/cltif/v2/radio.jsp",
+                         ["nodeName"]="电台"
+                     }
+                 }
+             hoomeAllTitleData = {
+                     [0]={
+                        ["type"]="",
+                         ["detailUrl"]="http://wap.cmread.com/tingclient/publish/clt/resource/cltif/v2/discoverIndex.jsp?nodeId=1036&pageSectionNodeId=1036-&pageSectionContId=&pageSectionIndexId=1&fromIndex=Y",
+                         ["nodeName"]="分类"
+                     }
+                 }
+            saveTableToLocal(saveFileNames["honeTileData"], "discoverNode", homeTitleData)
+            saveTableToLocal(saveFileNames["honeTileData"], "assortmentNode",hoomeAllTitleData)
+        end
+        inIndex = true
+        Util:logwrite("=====IO:fileExist=====",IO:fileExist('WONDER:\\msgpush.txt'),IO:fileExist('WONDER:\\getuipush.txt'),IO:fileExist(Util:getDefaultFolder(WDFIDL_MMS) .. 'yuyue.txt'))
+        if IO:fileExist('WONDER:\\msgpush.txt') or IO:fileExist('WONDER:\\getuipush.txt') or IO:fileExist(Util:getDefaultFolder(WDFIDL_MMS) .. 'yuyue.txt') then   --消息推送能进入app(解决版本更新阻挡)
+            isMsgPush = true
+            Util:logwrite("===========isMsgPush===========")
+        end 
+        
+        Talkingdata:onPageStart('启动页')
+    elseif msg == MSG_DIALNET then                   --Http:connectWLAN返回的消息
+        local paramFlag = param.flag
+        local paramStatus = param.networkstatus
+        Util:logwrite("=========MSG_DIALNET.param===========",param)   --打印这个消息下的传递的param的内容
+        if paramStatus == 7 then  --判断是不是和网络连接有关
+            
+            if paramFlag== 65537 then --3g连通
+                local reg = Reg:create(Reg.com_listencp_client.index)  --记录网络类型
+                Reg:setString(reg, 'connectType', 'moveConnect')
+                connectCellularNetwork()  --连接数据流量网络
+                if hasGoHome == 0 then
+                    if isIphone() then
+                        getSendPushToken()  --ios获取的idfa和iosPushToken写入config.xml的方法
+                    end
+                    if isIphone() then    --如果是iphone
+                        
+                        local wdid = Config:get("wduuid")
+                        wdid = string.gsub(wdid,"0","")
+                        wdid = string.gsub(wdid,"-","")
+                        if wdid == '' then
+                            getUUID()
+                            -- Guitui:getClientID('getcidcallback')
+                        else
+                            requestAdviceData() --获取loading请求
+                            setIosMsgPush()
+                            -- Guitui:getClientID('getcidcallback')
+                            getAccessToken()
+                        end
+                    elseif isOnPhone() and getPlatform()=="Android" then  --在android手机的情况下
+                        --获取accountName,获取token进行鉴权
+                        autoBLLogin("wap")
+                        Guitui:getClientID('getcidcallback')
+                        getAccessToken()                       
+                    else                  
+                        requestAdviceData() --获取loading请求
+                        Guitui:getClientID('getcidcallback')
+                        getAccessToken()
+                        -- setMsgPush() -- 消息推送，上报
+                    end 
+                    hasGoHome = hasGoHome + 1
+                end
+                isCanGoHome = true
+                if downloadNewApkError then
+                    Download:start()
+                end
+                -- if Config:get('first_launch') == '1' and isOnPhone()  then
+                --         --todo
+                --     createPlayer()
+                -- elseif Config:get('first_launch') == '1' then
+                --     setAllShoworHide(guidePageNode,1)
+                -- end
+            elseif paramFlag== 1 then --wifi连通
+                local reg = Reg:create(Reg.com_listencp_client.index)  --记录网络类型
+                Reg:setString(reg, 'connectType', 'wifi')
+                if hasGoHome == 0 then
+                    if isIphone() then
+                        getSendPushToken()
+                    end
+                    if isIphone() then 
+                        local wdid = Config:get("wduuid")
+                        wdid = string.gsub(wdid,"0","")
+                        wdid = string.gsub(wdid,"-","")
+                        if wdid == '' then
+                            getUUID()
+                            -- Guitui:getClientID('getcidcallback')
+                        else
+                            requestAdviceData()  --获取loading请求
+                            setIosMsgPush()
+                            -- Guitui:getClientID('getcidcallback')
+                            getAccessToken()
+                        end
+                    elseif isOnPhone() and getPlatform()=="Android" then  --在android手机的情况下
+                        --获取accountName,获取token进行鉴权
+                        autoBLLogin("default")
+                        Guitui:getClientID('getcidcallback')
+                        getAccessToken()    
+                    else
+                        Guitui:getClientID('getcidcallback')
+                        requestAdviceData()  --获取loading请求
+                        getAccessToken()
+                        -- setMsgPush() -- 消息推送，上报
+                    end 
+                    hasGoHome = hasGoHome + 1
+                end
+                isCanGoHome = true
+                if downloadNewApkError then
+                    DownloadEx:start()
+                end
+                -- createPlayer()
+                -- if Config:get('first_launch') == '1' and isOnPhone()  then
+                --         --todo
+                --     createPlayer()
+                -- elseif Config:get('first_launch') == '1' then
+                --     setAllShoworHide(guidePageNode,1)
+                -- end
+            elseif paramFlag == 65536 or paramFlag == 0 then   --0x10000 = 65536 wap网络不通; 0x00000 = 0 wifi网络不通
+                 dealConnectError('网络连接错误,请检查您的网络！')
+            end
+        end
+        Talkingdata:onPageEnd('启动页')
+    elseif msg == MSG_DEACTIVATE then
+        inIndex = false
+        if isIphone() then
+            Util:addStatusBar()
+        end
+    else
+        Util:onSpriteEvent(msg, param,Alias.index)
+    end
+end
+
+-- @brief 插件消息方法
+function bodyOnPluginEvent(msg, param)
+    if msg == 101 then  --如今没有在用
+        local uuidData = Http:jsonDecode('uuidData')
+        Util:logwrite("===========uuidData==========",uuidData)
+        if uuidData ~= nil and uuidData.resultCode == '4' and uuidData.uuid ~='' then
+            Config:set('wduuid',uuidData.uuid)
+            local wduuid = {}
+            wduuid["wduuid"] = uuidData.uuid
+            saveTableToLocal(saveFileNames["user"], "wduuid", wduuid)
+
+        end
+        requestAdviceData()  --获取loading请求
+        setIosMsgPush()
+        getAccessToken()
+    elseif msg == 102 then  --获取loading.jsp的返回
+        dealMsgAdviceBack()
+    elseif msg == 103 then  --获取代码更新
+        msg103()  
+    elseif msg == 104 then  -- 提交CID到服务端
+        msg104()
+    elseif msg == 105 then  --获取用户信息数据,然后使用saveTableToLocal(saveFileNames["user"],"userdata")保存在本地
+        msg105()
+    elseif msg == 108 then  --蜻蜓token的网络请求
+        msg108()
+    elseif msg == 120 then  --getAccessToken方法成功后发送miguToken到后台验证
+        msg120()
+    elseif msg == 121 then  --getAccessTokenByCondition方法成功后发送miguToken到后台验证
+        msg121()    
+    elseif msg == 122 then  --获取到统一登录的开关信息
+        msg122()    
+    elseif msg == 130 then
+        Util:logwrite("====commonData=====")
+        local filePath = Util:getCachePath(Config:get("server")..Alias.common)
+        if IO:fileExist(filePath) then
+            IO:fileRemove('MODULE:\\com_listencp_client\\common\\common.lua') 
+            local getPipeData = Util:getPipeData(filePath, 'MODULE:\\com_listencp_client\\common\\common.lua')
+            -- IO:fileCopy(filePath, 'MODULE:\\com_listencp_client\\common\\common2.lua', true) 
+            Util:logwrite("====getPipeData==common===",getPipeData)
+            local tempmd5common =string.upper( Util:md5(Alias.common) )
+            saveStringToLocal(saveFileNames['md5Value'].."sceneModified.xml",tempmd5common,sceneModifiedData[tempmd5common])
+        end
+    elseif msg == 131 then
+        Util:logwrite("====listItemData=====")
+        local filePath = Util:getCachePath(Config:get("server")..Alias.listItem)
+        if IO:fileExist(filePath) then
+            IO:fileRemove('MODULE:\\com_listencp_client\\common\\listItem.lua') 
+            local getPipeData = Util:getPipeData(filePath, 'MODULE:\\com_listencp_client\\common\\listItem.lua')
+            -- IO:fileCopy(filePath, 'MODULE:\\com_listencp_client\\common\\listItem2.lua', true) 
+            Util:logwrite("====getPipeData==listItem===",getPipeData)
+            local tempmd5common =string.upper( Util:md5(Alias.listItem) )
+            saveStringToLocal(saveFileNames['md5Value'].."sceneModified.xml",tempmd5common,sceneModifiedData[tempmd5common])
+        end
+    elseif msg == 132 then
+        Util:logwrite("====homeIndexData=====")
+        local filePath = Util:getCachePath(Config:get("server")..Alias.homeIndex)
+        if IO:fileExist(filePath) then
+            IO:fileRemove('MODULE:\\com_listencp_client\\index.wdml') 
+            local getPipeData = Util:getPipeData(filePath, 'MODULE:\\com_listencp_client\\index.wdml')
+            -- IO:fileCopy(filePath, 'MODULE:\\com_listencp_client\\index2.wdml', true) 
+            Util:logwrite("====getPipeData==homeIndex===",getPipeData)
+            local tempmd5common =string.upper( Util:md5(Alias.homeIndex) )
+            saveStringToLocal(saveFileNames['md5Value'].."sceneModified.xml",tempmd5common,sceneModifiedData[tempmd5common])
+        end
+    elseif msg == 133 then
+        Util:logwrite("====player=====")
+        local filePath = Util:getCachePath(Config:get("server")..Alias.player)
+        if IO:fileExist(filePath) then
+            IO:fileRemove('MODULE:\\com_listencp_client\\common\\player.lua') 
+            local getPipeData = Util:getPipeData(filePath, 'MODULE:\\com_listencp_client\\common\\player.lua')
+            -- IO:fileCopy(filePath, 'MODULE:\\com_listencp_client\\common\\player2.wdml', true) 
+            Util:logwrite("====getPipeData==player===",getPipeData)
+            local tempmd5common =string.upper( Util:md5(Alias.player) )
+            saveStringToLocal(saveFileNames['md5Value'].."sceneModified.xml",tempmd5common,sceneModifiedData[tempmd5common])
+        end
+    elseif msg == 150 then
+        msg150()
+    elseif msg == 151 then
+        msg151()
+    elseif msg == MSG_NETWORK_ERROR then -- 拨号失败
+        dealConnectError('网络连接错误,请检查您的网络！')
+        -- if inIndex and (not homeTitleData or not next(homeTitleData) )then
+        --   requestAdviceData()
+        -- end
+    elseif msg > MSG_NETWORK_ERROR then -- 请求超时
+        Util:logwrite("=====MSG_NETWORK_ERROR======",MSG_NETWORK_ERROR)
+        Util:logwrite("=====msg======",msg)
+        if msg == (MSG_NETWORK_ERROR + 1001) or msg == (MSG_NETWORK_ERROR + 102) then
+            dealConnectError('网络请求超时,请检查您的网络！')
+        end
+        -- if inIndex and (not homeTitleData or not next(homeTitleData) )then
+        --   requestAdviceData()
+        -- end
+    else
+        Util:onPluginEvent(msg, param)
+    end
+end
+
+-- @brief 按键响应处理 
+function mainNodeOnKeyUp(sprite, kc)
+    if kc == Key.F2 then -- 按下物理返回键
+        goBack()
+    end
+end
+
+function goBack()
+    if Sprite:isVisible(versionNode) == 1 then
+        if adviceData.flag == "2" then
+            enterF2()
+            return
+        end
+        setAllShoworHide(versionNode,'0')
+        finishLoadDataEnterApp()
+        return
+    end
+
+    if Sprite:isVisible(downloaddialog) == 1 then
+        if adviceData.flag == "2" then
+            enterF2()
+            return
+        end
+        cancelUpdate()
+        return
+    end
+    if Loading:isShow() then
+        Loading:close() 
+        return
+    end
+    if Dialog:isShow() then
+        if adviceData.flag == "2" then
+            enterF2()
+            return
+        end
+        Dialog:close()
+        finishLoadDataEnterApp()
+        return
+    end
+    enterF2()
+end
+
+---------------------------------------util functions---------------------------
+-- 获取CID
+function getcidcallback(strRet)
+    Util:logwrite('$$$strRet==getcidcallback===',strRet)
+    Util:logwrite("-------走到了吗---------")
+    local cid = string.match(strRet, '([%w]+)[^%w]-$')
+    Util:logwrite("--------这就是cid---------",cid)
+    Config:set('wdcid', cid) 
+    -- if Config:get("wdcid") ~= nil or Config:get("wdcid") ~= '' then
+    cidBtn()
+    -- end    
+    if Config:get("pushMsg") == '0' then
+        Guitui:turnOffPush()
+    end
+end
+
+-- 提交CID到服务端
+function cidBtn(sprite)
+    Util:logwrite("-------来了吗--------")
+    local url = Config:get('server')..'/clt/operateApnUser.msp?token='..Config:get("wdcid")
+    Util:httpClient('guitui',url,104,'post',false)
+    Util:logwrite("------既然来了就看看是什么----------------",url)
+end
+
+function msg104( )
+    -- body
+    local guitui = Http:jsonDecode('guitui')
+    Util:logwrite('==========guitui==============',guitui)
+end
+
+--@brief 初始化一些参数
+function setHttpParam()
+    if IO:fileExist(videoUrl) then
+        Util:logwrite("=========videoUrl====true=======",IO:fileExist(videoUrl))
+        playUrl = getDownloadPath()..saveFileNames["downloadPath"].."\/fristStartApp.mp4"
+        IO:fileCopy(videoUrl, playUrl, false) 
+    end
+    -- if not isIphone() and isOnPhone() and IO:fileExist('MODULE:\\channel.xml') then
+    --     Util:logwrite("======channel.xml===fileExist===========")
+    --     local channel = IO:fileRead('MODULE:\\channel.xml') 
+    --     Util:logwrite("======channel.xml====",channel)
+    --     Config:set("wd_channel",channel)
+    -- end
+    if not isIphone() and isOnPhone() then
+        local channelDirTab = IO:openDir('MODULE:\\^cid_') 
+        -- Util:logwrite("==channelDirTab=",channelDirTab)
+        for i=1,#channelDirTab do
+            if string.find( channelDirTab[i].filename ,'cid' ) then
+                local channel = string.sub( channelDirTab[i].filename, 5 )
+                Util:logwrite("==channel=",channel)
+                Config:set("wd_channel",channel)
+            end
+        end
+    end
+    if Config:get('first_launch') == '1' then  --如果为首次登陆
+        restoreConfig()  --升级后恢复Config设置,从手机的本地文件写入到config.xml
+    end
+    wduuidTabel = Util:stringToTable(getTableFromLocal(saveFileNames['user'], "wduuid"))  --设备的唯一id
+    Util:logwrite("========wduuidTabel============",wduuidTabel)
+    if wduuidTabel and wduuidTabel ~= "" then
+        Config:set('wduuid',wduuidTabel.wduuid or '')   
+    end
+    local date = os.date("*t", os.time())
+    Util:logwrite("=========date===========",date)
+    -- if Config:get('iphoneClose') == '1' or Config:get('isSDK') == '1' then
+        -- Config:set('first_launch','0')
+    --     -- setAllShoworHide(welcome,0)
+    -- end
+    Util:changeSkin()
+
+    --设置wduuid
+
+    local wduuid
+    if isOnPhone() and getPlatform()=="Android" then  --如果是在真机上且平台为android
+        wduuid = System:getMachineInfo(4)  --获取手机的IMEI,确定手机号码的唯一信息
+        if wduuid =="" then  --Android真机上获取wduuid为空（极个别手机）
+            local wid = Config:get('wduuid')
+            if wid =="" then
+                for i=1,3 do
+                    local random= math.random(10000000,99999999)  
+                    wduuid = tostring(random)
+                end
+            else
+              wduuid = wid 
+            end 
+        end 
+        Config:set('wduuid', wduuid)  --保存到config.xml
+        local wduuidTabel = {}
+        wduuidTabel["wduuid"] = wduuid
+        saveTableToLocal(saveFileNames["user"], "wduuid", wduuidTabel) --保存的手机本地
+    elseif isOnPhone() and getPlatform()=="iOS" then  --如果是在真机上且平台为IOS
+        local idfa = LuaToJavaExec('Util','idfaString','[default]',0)  --获取手机推送所需要的idfa编号,用来验证推送用的
+        Util:logwrite("======idfa========",idfa)
+        if idfa and idfa ~= '' then
+            Config:set('idfa',idfa)   
+        end
+        wduuid = idfa
+        local wdid = Config:get("wduuid")
+        wdid = string.gsub(wdid,"0","")
+        wdid = string.gsub(wdid,"-","")
+        if wduuid and wduuid ~= "" and wdid == "" then
+            Config:set('wduuid',wduuid)  --因为ios手机无法获取到uuid,即IMEI,所以以idfa编号或者随机数作为wduuid
+            local wduuidTabel = {}
+            wduuidTabel["wduuid"] = wduuid
+            saveTableToLocal(saveFileNames["user"], "wduuid", wduuidTabel) --保存的手机本地
+        end
+    elseif not isOnPhone() then  --在模拟器平台上
+        Util:logwrite("===random=1111===") 
+       local wid = Config:get('wduuid')
+        Util:logwrite("===wid=1111===",wid) 
+       if wid=="" then
+            for i=1,3 do
+                local random= math.random(10000000,99999999) 
+                Util:logwrite("===random====",random) 
+                wduuid = tostring(random)
+            end
+            Config:set('wduuid', wduuid) 
+            local wduuidTabel = {}
+            wduuidTabel["wduuid"] = wduuid
+            saveTableToLocal(saveFileNames["user"], "wduuid", wduuidTabel)
+
+       end 
+    end 
+   --ios wduuid另行处理
+   -- 其他平台进入和听书 获取参数
+    if Config:get('isSDK') == '1' then
+        if getPlatform() == 'iOS' then  --在ios平台上
+            Util:logwrite("=========outParam===========")
+            local startParam = LuaToJavaExec('appStart', 'appStart', "[default]", 0)
+            if startParam and startParam ~= 'false' then
+                local outParam = Util:split( LuaToJavaExec('appStart', 'appStart', "[default]", 0),';' )
+                Config:set('out_token',outParam[1])
+                Config:set('outFromFlag',outParam[2])
+            end
+        else                            --在android平台上
+            local outParam = Util:split( Util:getAppStartParamString(),';' )
+            Util:logwrite("=========outParam===========",outParam)
+            if Util:getAppStartParamString() and Util:getAppStartParamString() ~="" then
+                Config:set('out_token',outParam[1])
+                Config:set('outFromFlag',outParam[2])
+                -- Config:set('out_token',"8A52DCBC4FDBD545014FEE990D48187E")
+            end
+        end
+    end
+    --设置平台相关  01：iPad；02：android pad；03：iPhone；04：android phone 
+    local wdclienttype
+    local platform 
+    local client_name 
+    if getPlatform() == 'iOS' then   --模拟器上设置也为Android
+       platform = 'iOS'
+       wdclienttype = '03'
+       client_name = 'CMREAD_iOS_WH_Listen'
+    else
+       platform = 'Android'
+       wdclienttype = '04'
+       client_name = 'CMREAD_Android_WH_Listen'
+    end 
+    Config:set('platform', platform)  --写入平台名称
+    Config:set('wdclienttype', wdclienttype)   --写入平台编号
+    Config:set('client_name', client_name)   --写入应用的名称
+    
+    local width, height = System:getScreenSize()  --获取手机分辨率
+    switchWelcomeImg(width,height)  --根据不同的分辨率切换不同的启动图,即非首次打开app时的图片
+    --设置分辨率
+    Config:set('wdresolution',SCREEN_WIDTH..'*'..SCREEN_HEIGHT)  --将分辨率保存在config.xml
+    if isOnPhone() then
+        if isIphone () and Config:get('iosClose') == '1' then
+            setAllShoworHide(welcome,0)
+        else
+            Util:getLocFromBaiduLocSDK()  --获取本地城市
+            setAllShoworHide(welcome,1)
+        end
+    end
+    --设置客户端UA
+    local wduseragent = System:getUserAgent()  --获得客户端UA
+    Config:set('wduseragent', wduseragent)
+    
+    -- Config:set("server", "http://wap.cmread.com/tingclient")
+    --判断并设置广告显示时间和图片
+    local timeTable = os.date("*t", os.time())  --获取当前时间
+    startShowTime = tonumber(timeTable.hour)*60*60 + tonumber(timeTable.min)*60 + tonumber(timeTable.sec)  --将当前时间的时分秒换成秒数
+    Sprite:setProperty(advImg,"data",'0')
+     Util:logwrite("=====isLoadLaunchImage===ni===")
+    if IO:fileExist(saveFileNames['adviceData']) then  --保存广告时间,广告信息,loading请求的内容,内容在adviceData里面
+        local adviceData = Util:stringToTable(getTableFromLocal(saveFileNames['adviceData'], "adviceData"))  --取出本地保存的adviceData
+        if adviceData ~= nil then  --如果本地保存的adviceData不为空 
+            if adviceData.discoverNode then
+                saveTableToLocal(saveFileNames["honeTileData"], "discoverNode", adviceData.discoverNode)
+                homeTitleData = adviceData.discoverNode
+            end
+            if adviceData.assortmentNode then
+                saveTableToLocal(saveFileNames["honeTileData"], "assortmentNode", adviceData.assortmentNode)
+            end
+            if adviceData.babyshowNode then
+                saveTableToLocal(saveFileNames["honeTileData"], "babyshowNode", adviceData.babyshowNode)
+            end
+            if adviceData.displayTime and adviceData.displayTime ~= '' then   --如果displayTime不为空,这个值是首页广告的显示时间
+              -- welcomeShowTime = tonumber(adviceData.displayTime)   --welcomeShowTime则赋予这个值,这个值用来设置定时器去显示广告展示的时间,然后跳转home等页面
+                  welcomeShowTime = 2
+            end
+            -- Util:logwrite("=====isLoadLaunchImage======",adviceData.picUrls[0].picName)  --打印要展示的广告图片的url
+            if isLoadLaunchImage(adviceData) then         --如果需要展示广告图片
+                Util:logwrite("===========1111111111111=========")
+                local adviceImgUrl = 'file://'..adviceData.picUrls[0].picName
+                Util:logwrite("===========adviceImgUrl=========",adviceImgUrl)
+                Util:logwrite("===========welcome=========",welcome)
+                Sprite:setProperty(welcome , 'src', adviceImgUrl)  
+                local timeTable = os.date("*t", os.time())
+                startShowTime = tonumber(timeTable.hour)*60*60 + tonumber(timeTable.min)*60 + tonumber(timeTable.sec)
+            else                                          --如果不用显示广告图片
+               if Config:get("first_launch") == "1" then  --如果是第一次启动
+                    welcomeShowTime = 0                   
+                else                                      --如果不是第一次启动
+                    welcomeShowTime = 3
+                end
+            end
+            if adviceData["adInfo"] and adviceData["adInfo"] ~="" and adviceData["adInfo"]['ad'] and adviceData["adInfo"]['ad']~="" then
+               -- if adviceData['adInfo']['control']['time_duration'] then
+               --    if adviceData['adInfo']['control']['time_duration'] ~= '' then 
+               --       AdvertisingPlayTime = adviceData['adInfo']['control']['time_duration']  
+               --    else
+               --       AdvertisingPlayTime = 0
+               --    end 
+               -- else
+               --     AdvertisingPlayTime = 0
+               -- end
+               AdvertisingPlayTime = 3
+            else
+                AdvertisingPlayTime = 0
+            end
+
+        else                                              --如果本地保存的adviceData为空
+            if Config:get("first_launch") == "1" then
+                AdvertisingPlayTime =0
+                welcomeShowTime = 0
+            else
+                AdvertisingPlayTime =3
+                welcomeShowTime = 2
+            end
+        end
+        
+    else                                                  --如果本地不存在adviceData文件
+        if Config:get("first_launch") == "1" then
+            AdvertisingPlayTime =0
+            welcomeShowTime = 0
+        else
+            AdvertisingPlayTime =3
+            welcomeShowTime = 2
+        end
+    end
+
+end
+
+-- 进入客户端的方法
+function gohome()
+    if adviceData and adviceData.flag == "2" then 
+        return
+    end
+    Util:logwrite("===gohome==gohome==gohome==")
+    -- if not adviceData and not loadingRequestTwo then
+    --     -- Util:httpClient("adviceData",url,102,'post',false) 
+    --     loadingRequestTwo = true
+    --     Util:logwrite("=====loadingRequestTwo=======",loadingRequestTwo)
+    --     Timer:set(123, 8000, "finishLoadDataEnterApp")
+    --     return
+    -- end
+    if not isIphone() then
+        initOTS( )
+    end
+    if isCanGoHome then  
+        Util:logwrite("==isMsgPush==",isMsgPush)
+        if isMsgPush then   --如果有推送的情况下
+            if OnSelectYuYueNotification() then
+                return
+            end
+            if isIphone() then  --如果是ios平台
+                local pushData = Json:loadFile2Table("WONDER:\\msgpush.txt")   --读取推送信息保存的文件
+                IO:fileRemove("WONDER:\\msgpush.txt")                          --读过了,就删掉
+                Util:logwrite("=======pushData==========",pushData)
+                if pushData and pushData ~= "" then 
+                    local contType = pushData.UIApplicationLaunchOptionsRemoteNotificationKey.linkType
+                    local cid = pushData.UIApplicationLaunchOptionsRemoteNotificationKey.contId
+                    local linkUrl = pushData.UIApplicationLaunchOptionsRemoteNotificationKey.linkUrl
+                    paramPushPage = Alias.index
+                    setPrePageName( "启动页" )
+                    local msgUrl = Util:split(contType, '|')
+                    if msgUrl and #msgUrl > 1 then
+                        iosSetGo( contType )
+                    else
+                        sceneGoHome( )
+                    end
+                end
+            else
+                local pushData = Json:loadFile2Table("WONDER:\\getuipush.txt")
+                Util:logwrite("======pushData=========",pushData)
+                IO:fileRemove("WONDER:\\getuipush.txt")
+                if pushData and pushData ~= "" then 
+                    local linkUrl = pushData.IsNew
+                    local cid = pushData.MsgId
+                    local contType = pushData.MsgUri
+                    paramPushPage = Alias.index
+                    setPrePageName( "启动页" )
+                    local msgUrl = Util:split(contType, '|')
+                    if msgUrl and #msgUrl > 1 then
+                        iosSetGo( contType )
+                    else
+                        sceneGoHome( )
+                    end
+                else
+                    sceneGoHome( )
+                end
+            end
+            isCanGoHome = false
+            return
+        end
+        
+        
+        sceneGoHome( )
+        isCanGoHome = false
+    end
+end
+
+function OnSelectYuYueNotification( )
+    -- body
+    local mode = Util:isAppPassiveStart()
+    local reg = Reg:create(Reg.com_listencp_client.audioplayer)
+    local firstYuyue = Reg:getNumber(reg,'firstYuyue') 
+    Log:write("===== firstYuyue======",firstYuyue) 
+    Log:write("===== mode===",mode)
+    if mode and firstYuyue == 0 then
+        local msgFilePath = Util:getDefaultFolder(WDFIDL_MMS) .. 'yuyue.txt'    --获得应用程序所在目录
+        if IO:fileExist(msgFilePath) then
+            local msgTable = IO:fileRead(msgFilePath)
+            if msgTable and msgTable ~= "" then
+                --被动起记个标志位，以便于到看完预约节目第一次从播放页返回时发首页数据请求
+                Reg:setNumber(reg,'firstYuyue',1)
+                Log:write("=====执行doPassive1=======")
+                Timer:set(2, 1000, 'doPassive')
+                return true
+            end
+        else
+            return false
+        end
+        
+        local playFilePath = Util:getDefaultFolder(WDFIDL_MMS) .. 'playnotification.txt'    --获得应用程序所在目录
+        if IO:fileExist(playFilePath) then
+            local playTable = IO:fileRead(playFilePath)
+            Util:logwrite("====playTable=====",playTable)
+            if playTable and playTable ~= "" then
+                local musicParam = Util:split(playTable,'|')
+                if musicParam and #musicParam >1 then
+                    --被动起记个标志位，以便于到看完预约节目第一次从播放页返回时发首页数据请求
+                    goAudioPlayer( Alias.home,musicParam[2] )
+                    return true
+                else
+                    return false
+                end
+            else
+                return false
+            end
+        else
+            return false
+        end
+
+    else 
+        return false
+    end 
+end
+
+
+function sceneGoHome( )
+    -- body
+    -- isMsgPush = true
+    if isIphone() then
+        Util:addStatusBar()
+    end
+    Util:logwrite("=========gohome=============")
+    Config:set('fristPlay','1')
+    Player:stop()
+    Player:show(0)
+    SpriteWindow_Close(windowNodes)
+    if adviceData and adviceData.isLogin == '1' and (not adviceData.userInfo.groupType or adviceData.userInfo.groupType =='')  then  --如果已经登录,且没有选择过groupType,即上班族,学生等,则跳转个人推荐页面
+        setPrePageName( "启动页" )
+        -- Scene:go(Alias.personalRecommend,true,4)
+        Config:set("first_launch","0")
+        Scene:go(Alias.personalRecommend, true, 1)
+    else
+        setPrePageName( "启动页" )
+        Config:set("first_launch","0")
+        Scene:go(Alias.home, true, 1)
+    end
+end
+
+function getHomeCarch(  )
+    -- body
+    if string.match(Alias.home, '^/') then
+        local homeCatchPath = Util:getCachePath(Config:get("server")..Alias.home)
+        if not IO:fileExist(homeCatchPath) then
+            Http:request('homeData', Config:get("server")..Alias.home,150,{fileName=Util:getCachePath(Config:get("server")..Alias.home..0)})
+            -- getCommon( "home" ,150)
+        end
+    end
+end
+
+function getPersonalRecommendCarch(  )
+    -- body
+    if string.match(Alias.personalRecommend, '^/') then
+        local homeCatchPath = Util:getCachePath(Config:get("server")..Alias.personalRecommend)
+        if not IO:fileExist(homeCatchPath) then
+            Http:request('personalRecommendData', Config:get("server")..Alias.personalRecommend,151,{fileName=Util:getCachePath(Config:get("server")..Alias.personalRecommend..0)})
+            -- getCommon( "home" ,150)
+        end
+    end
+end
+
+function msg150()
+    -- body
+    Util:logwrite("======msg150======")
+    if sceneModifiedData and sceneModifiedData ~= "" and next(sceneModifiedData) then
+        local tempmd5common =string.upper( Util:md5(Alias.home) )
+        saveStringToLocal(saveFileNames['md5Value'].."sceneModified.xml",tempmd5common,sceneModifiedData[tempmd5common])
+    end
+    indexGetHomeJsp = true
+end
+
+function msg151()
+    -- body
+    Util:logwrite("======msg150======")
+    if sceneModifiedData and sceneModifiedData ~= "" and next(sceneModifiedData) then
+        local tempmd5common =string.upper( Util:md5(Alias.personalRecommend) )
+        saveStringToLocal(saveFileNames['md5Value'].."sceneModified.xml",tempmd5common,sceneModifiedData[tempmd5common])
+    end
+    indexGetPersonalRecommendJsp = true
+end
+
+function initOTS( )
+    -- body
+    local wd_channel = Config:get('wd_channel')
+    local chengshi = Config:get('curShi')
+    local shengfen = Config:get('curCity')
+    local phoneNum
+    local miguID
+    local QQ
+    local WX
+    local WB
+
+    local userData = Util:stringToTable(getTableFromLocal(saveFileNames["user"], "userData"))
+    if userData and userData and userData ~='' and userData.accountName and userData.accountName ~='' and isPhoneNum( userData.accountName ) then
+        phoneNum =  userData.accountName
+    else
+        phoneNum = '' 
+    end
+    if userData and userData.weiboIdMap and userData.weiboIdMap ~=''  then
+        miguID = userData.weiboIdMap.USERCENTER or ''
+        QQ = userData.weiboIdMap.TENCENT or ''
+        WX = userData.weiboIdMap.WECHAT or ''
+        WB = userData.weiboIdMap.SINA or ''
+    else
+        miguID = ''
+        QQ =  ''
+        WX =  ''
+        WB =  ''
+    end
+
+    Util:logwrite("=====userData====",userData)
+    OTS:onInitlize(wd_channel, chengshi, shengfen, phoneNum, "", '', '',miguID,WX,QQ,WB,'')
+end
+
+-- @breif 被动起
+function doPassive()
+    Util:checkSmsrecommendFile()
+end
+
+function panoramaOnMouseDown(sprite, x, y)
+    mouseX, mouseY = x, y
+    return 0
+end
+
+function panoramaOnMouseMove(sprite, x, y)
+    moveX, moveY = x, y
+    return 0
+end
+
+function panoramaOnMouseUp(sprite, x, y)  --海报软件滑动抬起事件,在完成滑动到底后,跳转home页
+    Sprite:releaseCapture(sprite)
+    local diffX = mouseX - x
+    local diffY = mouseY - y
+
+    local panoramaItem = Sprite:getParent(sprite)
+    local index = Panorama:getItemIndex(panoramaItem)
+
+    if diffX >= 50 and math.abs(diffX) >= math.abs(diffY) then -- 下一张图片 
+        if index == Panorama:getItemCount(Sprite:getParent(panoramaItem)) - 1 then
+            -- Config:set("first_launch",'0')   --设置成非首次启动
+            if not isIphone() then   --不在ios平台的时候,创建桌面图标
+                AppManager:createShortcut("com.listencp.client") 
+                -- Tips:show("已添加桌面快捷图标")
+            end
+            if adviceData and adviceData~="" then  --如果已经获取到了loading.jsp的数据,就直接去gohome
+                Util:logwrite("===========gohome========1111======")
+               gohome()   --跳转登录
+            else 
+               Timer:set(999,3000,"gohome")  -- 如果没有获取到,则延迟几秒去gohome(),等待一下loading.jsp去获取
+            end
+            if not Loading:isShow() then Loading:show(rootSprite) end
+        end
+    end
+    return 0
+end
+
+function useBtnFun(sprite)
+    -- Config:set("first_launch",'0')
+    if not isIphone() then
+        AppManager:createShortcut("com.listencp.client") 
+        -- Tips:show("已添加桌面快捷图标")
+    end
+    if adviceData and adviceData~="" then  --如果已经获取到了loading.jsp的数据,就直接去gohome
+        Util:logwrite("===========gohome========2222======")
+       gohome()   --跳转登录
+    else 
+        Util:logwrite("则延迟几秒去gohome")
+        Timer:set(999,8000,"gohome")  -- 如果没有获取到,则延迟几秒去gohome(),等待一下loading.jsp去获取
+    end
+    if not Loading:isShow() then Loading:show(rootSprite) end
+end
+
+function getUUID()
+    Config:set("wduuid","")
+    Config:set("userId","")
+    Config:set("login_name","")
+
+    local url = Config:get("server").."/clt/update.msp?"..'idfa='..Config:get('idfa')
+    Util:httpClient("uuidData",url,101,'post',false)
+    -- Config:set('wduuid',Config:get('idfa'))
+end
+
+function setIosMsgPush()
+    local iosPushToken = Config:get('iosPushToken')
+    if iosPushToken~="" then
+        local url = Config:get('server') .. '/clt/operateApnUser.msp?operateType=add&token='..iosPushToken..'&idfa='..Config:get('idfa')
+        Util:logwrite('setIosMsgPush======url=========', url)
+        Util:httpClient("token_post",url,8903,'post',false)
+    end 
+end
+
+function msg108( )  --解析蜻蜓token
+    -- body
+    local access_token=Http:jsonDecode('access_token')     --解析token
+    Util:logwrite('=========access_token========',access_token)
+    if access_token ~=nil or access_token ~="" then
+        Util:logwrite("access_token", access_token.access_token)
+        Config:set("access_token",access_token.access_token)    --把token存入config文件 
+        Timer:set(2229, 1800000, "getAccessToken") --半个小时获取一次token 
+    end
+end
+
+function requestAdviceData()  --获取loading请求
+    local url = Config:get("server")..advice_url
+    Util:logwrite('======loading的url=====-----------------------=',url)
+    -- getHomeCarch( )
+    Util:httpClient("adviceData",url,102,'post',false)   --获取loading
+    Util:httpClient("sceneModifiedData",Config:get("server")..Alias.sceneModifiedData,103,'post',false)   --获取代码更新
+    if Config:get("isSDK") == "1" then
+        Util:httpClient("loginTable",Config:get("server").."/v2/clt/loginWithSchoolPaper.msp?token=".. Config:get('out_token').."&type=SCHOOLPAPER&loginType=1",105,'post',false)
+    end
+end
+
+function msg105()  
+    -- body
+    loginTable = Http:jsonDecode('loginTable')
+    Util:logwrite('=========loginTable=======',loginTable)
+    if loginTable.resultCode ~= nil and loginTable.resultCode == '1' then
+        Config:set('login','1')
+        Config:set('accountType',loginTable.userInfo.accountType or '')
+        Util:setLoginName(loginTable.userInfo.accountName or '')--登录名
+        --Config:set('isSynchronized','0')
+        Config:set('userId',loginTable.userInfo.userId or '')
+        Config:set('sname',loginTable.userInfo.sname or '')--昵称
+        Config:set('name',loginTable.userInfo.name or '')
+        Config:set('token',loginTable.userInfo.token or '')
+        Config:set('sex',loginTable.userInfo.sex or '')
+        BLMigu:notifyLoginResult(loginTable.userInfo.accountName)
+
+        saveTableToLocal(saveFileNames["user"], "userData", loginTable.userInfo)
+        local watchUserInfoStr = Util:tableToString(loginTable.userInfo)
+        -- Util:logwrite("=======watchHistoryListStr=====222222222==========",watchHistoryListStr)
+        local watchUserInfoStrData = "userInfo;wduuid="..Config:get("wduuid")..';'..watchUserInfoStr
+        if isIphone() then
+            AppleWatchData:RecievedData(watchUserInfoStrData)
+        end
+    end
+end
+
+
+function dealMsgAdviceBack()  --获取到loading.jsp后的返回值
+    Util:logwrite("===========close===1111========")
+    if not inIndex  then
+        return
+    end
+    Timer:cancel(123)                        --则取消123定时器        
+    adviceData = Http:jsonDecode('adviceData')
+    Util:logwrite('========adviceData===========',adviceData)
+    local reg = Reg:create(Reg.com_listencp_client.index)
+    if adviceData and adviceData.commonLuaMD5 and adviceData.commonLuaMD5 ~= '' then
+        Reg:setString(reg, 'commonLuaMD5', adviceData.commonLuaMD5)
+    end
+    if adviceData.flag ~= '1' and adviceData.flag ~= "2" then 
+        if Config:get('first_launch') == '1' and isOnPhone()  then
+            if adviceData and adviceData.fristStartMovie and adviceData.fristStartMovie ~="" then
+                --todo
+                setAllShoworHide(guidePageNode,0)
+                setAllShoworHide(goNode,1)--显示跳过视频控件按钮
+                playUrl = adviceData.fristStartMovie
+                 -- if isIphone() then
+                    createPlayer()
+                -- end
+                Share:setListen('ListenCBdetail');
+                initShareParameter(adviceData)
+                -- gohome()
+                openPlayFirstMp4 = true
+                if adviceData.userCount and adviceData.userCount ~="" then
+                    Sprite:setProperty(userCount,"text",adviceData.userCount)
+                    Util:logwrite('========adviceData.userCount===========',adviceData.userCount)
+                
+                else
+                     Sprite:setProperty(userCount,"text","NIMAB")
+                end    
+                -- Timer:set(232,60000,'gohome')
+            else
+                --todo
+                -- setAllShoworHide(guidePageNode,1)
+            end
+        elseif Config:get('first_launch') == '1' then
+            setAllShoworHide(guidePageNode,1)
+        end
+    end
+
+    -- adviceData["anInfo"] = buildTestTable()  
+    -- Util:logwrite('========adviceData====ni=======',adviceData)
+    -- if adviceData and adviceData.isLogin == '1' and (not adviceData.userInfo.groupType or adviceData.userInfo.groupType =='')  then  --如果已经登录,且没有选择过groupType,即上班族,学生等,则跳转个人推荐页面
+    --     -- getPersonalRecommendCarch( )
+    -- end
+
+    --获取并处理广告信息
+    if adviceData and adviceData.picUrls and adviceData.picUrls[0].pic ~= nil then    --如果广告图片路径存在
+        Util:logwrite("======1111==========",isLoadLaunchImage(adviceData))
+        if isLoadLaunchImage(adviceData) then    --如果要展示启动的广告图片
+            Util:logwrite('存在table========')
+            if IO:fileExist(saveFileNames['adviceData']) then  --如果是有本地保存的loading数据
+                Util:logwrite('存在table========')
+                local localAdviceData = Util:stringToTable(getTableFromLocal(saveFileNames['adviceData'], "adviceData"))
+
+                if  adviceData.endTime ~= localAdviceData.endTime
+                    or adviceData.startTime ~= localAdviceData.startTime 
+                    or adviceData.displayTime ~= localAdviceData.displayTime
+                    or adviceData.picUrls[0].pic ~= localAdviceData.picUrls[0].pic then
+           
+                    saveTableToLocal(saveFileNames['adviceData'], "adviceData", adviceData)
+                    if adviceData.picUrls[0].pic and adviceData.picUrls[0].pic ~= localAdviceData.picUrls[0].pic and adviceData.picUrls[0].pic ~= '' then
+                        if IO:fileExist(saveFileNames['adviceImg']..localAdviceData.picUrls[0].picName) then
+                            IO:fileRemove(saveFileNames['adviceImg']..localAdviceData.picUrls[0].picName)
+                        end 
+                        -- local count = DownloadEx:getCount()
+                        -- for i = 1, count do
+                        --     DownloadEx:delete(i, false)
+                        -- end
+                        -- DownloadEx:append(saveFileNames['adviceImg']..adviceData.picUrls[0].picName, 'adviceImageName', adviceData.pic)
+                        playImgDown(adviceData.picUrls[0].pic)
+                        IO:fileCopy( Util:getCachePath(adviceData.picUrls[0].pic), saveFileNames['adviceImg']..adviceData.picUrls[0].picName, false) 
+                    end
+                else
+                    if  localAdviceData.picUrls[0].pic ~= nil 
+                        and localAdviceData.picUrls[0].pic ~= '' 
+                        and (not IO:fileExist(saveFileNames['adviceImg']..localAdviceData.picUrls[0].picName))then
+                        -- local count = DownloadEx:getCount()
+                        -- for i = 1, count do
+                        --     DownloadEx:delete(i, false)
+                        -- end
+                        -- DownloadEx:append(saveFileNames['adviceImg']..localAdviceData.picUrls[0].picName, 'adviceImageName', localAdviceData.picUrls[0].pic) 
+                        playImgDown(adviceData.picUrls[0].pic)
+                        IO:fileCopy( Util:getCachePath(adviceData.picUrls[0].pic), saveFileNames['adviceImg']..adviceData.picUrls[0].picName, false) 
+                    end
+                end
+            else   --如果不展示启动的广告图片
+                saveTableToLocal(saveFileNames['adviceData'], "adviceData", adviceData)
+                if adviceData.picUrls[0].pic and adviceData.picUrls[0].pic ~= '' then
+                    -- local count = DownloadEx:getCount()
+                    -- for i = 1, count do
+                    --     DownloadEx:delete(i, false)
+                    -- end
+                    -- DownloadEx:append(saveFileNames['adviceImg']..adviceData.picUrls[0].picName, 'adviceImageName', adviceData.picUrls[0].pic)
+                    playImgDown(adviceData.picUrls[0].pic)
+                    IO:fileCopy( Util:getCachePath(adviceData.picUrls[0].pic), saveFileNames['adviceImg']..adviceData.picUrls[0].picName, false) 
+                end
+            end
+        end
+    else
+        if IO:fileExist(saveFileNames['adviceData']) then
+           IO:fileRemove(saveFileNames['adviceData'])
+        end    
+    end
+    if adviceData and adviceData['adInfo'] and adviceData['adInfo']['ad'] and adviceData['adInfo']['ad']~="" and adviceData['adInfo']['ad']['image'] ~=nil then  
+       AdverImage = adviceData['adInfo']['ad']['image']
+    end
+    
+    if adviceData and adviceData~='' then               
+        if adviceData.hNewsNodes and (adviceData.hNewsNodes[0] or adviceData.hNewsNodes[1]) then
+            dealXml(adviceData.hNewsNodes, "news")
+        end
+        if adviceData.videoNodes and (adviceData.videoNodes[0] or adviceData.videoNodes[1]) then
+            dealXml(adviceData.videoNodes, "viewPoint")
+        end
+    end
+
+     -- cmwap 自动登录
+    if Config:get('isSDK') ~= '1' then
+        if adviceData and adviceData.isLogin == '1' then
+            Config:set("passCard","0") --通行证
+            Config:set('login','1')
+            Config:set('accountType',adviceData.userInfo.accountType or '')
+            Util:setLoginName(adviceData.userInfo.accountName or '')--登录名
+            Config:set('userId',adviceData.userInfo.userId or '')
+            Config:set('sname',adviceData.userInfo.sname or '')--昵称
+            Config:set('name',adviceData.userInfo.name or '')
+            Config:set('token',adviceData.userInfo.token or '')
+            Config:set('sex',adviceData.userInfo.sex or '')
+
+            saveTableToLocal(saveFileNames["user"], "userData", adviceData.userInfo)
+            local watchUserInfoStr = Util:tableToString(adviceData.userInfo)
+            Util:logwrite("=======watchHistoryListStr=====222222222==========",watchHistoryListStr)
+            local watchUserInfoStrData = "userInfo;wduuid="..Config:get("wduuid")..';'..watchUserInfoStr
+            if isIphone() then
+                AppleWatchData:RecievedData(watchUserInfoStrData)
+            end
+        end
+    end
+    if adviceData.discoverNode then
+        saveTableToLocal(saveFileNames["honeTileData"], "discoverNode", adviceData.discoverNode)
+        homeTitleData = adviceData.discoverNode
+    end
+    if adviceData.assortmentNode then
+        saveTableToLocal(saveFileNames["honeTileData"], "assortmentNode", adviceData.assortmentNode)
+    end
+    if adviceData.babyshowNode then
+        saveTableToLocal(saveFileNames["honeTileData"], "babyshowNode", adviceData.babyshowNode)
+    end
+
+    --处理版本升级
+    if Scene:getNameByHandle(Sprite:getCurScene()) == Alias.index and not openPlayFirstMp4 and Config:get('first_launch') ~= '1' then
+        if Config:get('tip_upDate') and Config:get('tip_upDate') ~= '' then
+            local update_tip = Util:split(Config:get('tip_upDate'), '|')
+            if update_tip and adviceData.version == update_tip[1] and update_tip[2] == '1' then
+                finishLoadDataEnterApp()
+            else
+                if adviceData == nil or adviceData.flag == "0" and not openPlayFirstMp4 then -- no update
+                    finishLoadDataEnterApp()
+                elseif adviceData.flag == "1" and not openPlayFirstMp4 then -- update
+                    Util:logwrite('sssssssssssssssssssssss=======gohome======')
+                    Util:logwrite("===========close===2222========")
+                    Timer:cancel(123)
+                    showVersionNode ( )
+                    setAllShoworHide(versionNode,1)
+               elseif adviceData.flag == "2" and not openPlayFirstMp4 then -- 强制升级
+                    Util:logwrite("===========close===3333========")
+                    Timer:cancel(123)
+                    showVersionNode ( )
+                    setAllShoworHide(versionNode,1)
+                    settingDownBtn( )
+                end 
+            end
+        else
+            if adviceData == nil or adviceData.flag == "0" and not openPlayFirstMp4 then -- no update
+                finishLoadDataEnterApp()
+            elseif adviceData.flag == "1" and not openPlayFirstMp4 then -- update
+                Util:logwrite('ggggggggggggggggggg=======gohome======')
+                Util:logwrite("===========close===444========")
+                Timer:cancel(123)
+                showVersionNode ( )
+                setAllShoworHide(versionNode,1)
+            elseif adviceData.flag == "2" and not openPlayFirstMp4 then -- 强制升级
+                Util:logwrite("===========close===555========")
+                Timer:cancel(123)
+                showVersionNode ( )
+                setAllShoworHide(versionNode,1)
+                settingDownBtn( )
+            end
+        end
+    end
+
+    --处理一键登录
+    if adviceData and adviceData.isSmsLogin and adviceData.isSmsLogin ~= '' then
+        Reg:setString(reg, 'isSmsLogin', adviceData.isSmsLogin)
+    else
+        Reg:setString(reg, 'isSmsLogin', '0')
+    end
+    if adviceData and adviceData.chinaMobile and adviceData.chinaMobile ~= '' then
+        Reg:setString(reg, 'chinaMobile', adviceData.chinaMobile)
+    else
+        Reg:setString(reg, 'chinaMobile', '0')
+    end
+    if adviceData and adviceData.chinaNet and adviceData.chinaNet ~= '' then
+        Reg:setString(reg, 'chinaNet', adviceData.chinaNet)
+    else
+        Reg:setString(reg, 'chinaNet', '0')
+    end
+    if adviceData and adviceData.chinaUnicom and adviceData.chinaUnicom ~= '' then
+        Reg:setString(reg, 'chinaUnicom', adviceData.chinaUnicom)
+    else
+        Reg:setString(reg, 'chinaUnicom', '0')
+    end
+   
+    Util:logwrite("=======end========")
+    -- 下载片头
+    if adviceData.piantouUrl and adviceData.piantouUrl~='' then
+        local piantouFileName = (string.match(adviceData.piantouUrl,".+/(.+)")) --文件名称+类型
+        local table = Util:split(piantouFileName, '.') 
+        local name = table[1]   --文件名称
+        local fileType = Util:split(table[2], '?')[1]   --文件类型
+        local piantouName = Util:md5(adviceData.piantouUrl,false)
+        Config:set('piantouName',piantouName..'.'..fileType)
+        local piantouPath = getAdvicePath( )..piantouName..'.'..fileType
+
+        if not IO:fileExist( piantouPath ) then
+            DownloadEx:append(piantouPath, 'piantouName', adviceData.piantouUrl)
+        end
+    else
+        Config:set('piantouName','')
+    end
+        Util:logwrite("==firstGoHome=firstGoHome===",firstGoHome)
+    if firstGoHome then
+        Util:logwrite("==firstGoHome=firstGoHome===")
+        gohome()
+    end
+    -- local reg = Reg:create(Reg.com_childcp_client.index) 
+end
+
+function msg103(  )
+    -- body
+    --将MD5保存于数据仓库
+    sceneModifiedData = Http:jsonDecode('sceneModifiedData')
+    if sceneModifiedData and sceneModifiedData~='' then
+        Util:logwrite('sceneModifiedData===sceneModifiedData==========', sceneModifiedData)
+        local reg = Reg:create(Reg.com_listencp_client.index)
+        Reg:setTable(reg, 'sceneModifiedData', sceneModifiedData)
+        downloadCommonAndListItem()
+        if indexGetHomeJsp then
+            local tempmd5common =string.upper( Util:md5(Alias.home) )
+            saveStringToLocal(saveFileNames['md5Value'].."sceneModified.xml",tempmd5common,sceneModifiedData[tempmd5common])
+        end
+    end
+
+end
+
+function closeOnselect( )
+    -- body
+    if adviceData.flag == "2" then 
+        doExit()
+    else
+        setAllShoworHide(versionNode,0)
+        finishLoadDataEnterApp()
+    end
+end
+
+function downloadNewApk(sprite)
+    Util:logwrite("===========close===666========")
+    Timer:cancel(123)
+    setAllShoworHide(versionNode,'0')
+    if not isIphone() then
+        local installPackagedowning = getDownloadPath()..'\/listencp\/'.."listencp"..adviceData.version..'.apk.ves'
+        local installPackage = getDownloadPath()..'\/listencp\/'.."listencp"..adviceData.version..'.apk'
+        if IO:fileExist(installPackagedowning) then
+            IO:fileRemove(installPackagedowning)
+            IO:fileRemove(installPackage)
+            DownloadEx:deleteByPath(installPackage) 
+        end
+        Util:logwrite('installPackage===========', installPackage)
+        if IO:fileExist(installPackage) then
+            Util:logwrite('installPackage=====yes======')
+            if adviceData.flag == "2" then
+                Dialog:show('提示', '已有最新安装包是否安装？', 'ok',"doInstallPackage")
+            else
+                Dialog:show('提示', '已有最新安装包是否安装？', 'ok_cancel',"doInstallPackage","finishLoadDataEnterApp", false, true)
+            end
+        else
+        Util:logwrite('isWlanOn()===========', isWlanOn())
+            if isWlanOn() then
+                toShowDownloadBar()
+                doDownlaodPackage()
+            else
+                Dialog:show('温馨提示', '是否使用手机流量更新？', 'ok_cancel',"DialogdownloadNewApk","finishLoadDataEnterApp")
+            end
+        end
+    else
+        Util:openURL(adviceData.downloadUrl)
+    end
+    isDownloading = true
+    isDoInstallPackage = true
+end
+
+function DialogdownloadNewApk( )
+    -- body
+    toShowDownloadBar()
+    doDownlaodPackage()
+end
+
+function toShowDownloadBar()
+    Util:logwrite('toShowDownloadBar=============')
+    isDoInstallPackage = false
+    setAllShoworHide(downloaddialog ,1)
+    local processBar = Sprite:findChild(downloaddialog, 'processBar')
+    Sprite:setRect(processBar, 0,0,0,6)
+    local processLabel = Sprite:findChild(downloaddialog, 'processLabel')
+    Sprite:setProperty(processLabel, 'text', '0%')
+end
+
+function doDownlaodPackage()
+    Util:logwrite('doDownlaodPackage=============')
+    if adviceData.downloadUrl and adviceData.downloadUrl~='' then
+        if IO:dirExist(getDownloadPath()..'\/listencp\/') ~= true then
+            IO:dirCreate(getDownloadPath()..'\/listencp\/')
+        end
+        downloadPath = getDownloadPath()..'\/listencp\/'.."listencp"..adviceData.version..'.apk'
+
+        DownloadEx:deleteByPath(downloadPath, true) 
+        DownloadEx:append(downloadPath, 'installPackageName', adviceData.downloadUrl)
+        onGetDownloadStatus()
+    else
+        finishLoadDataEnterApp()
+    end
+end
+
+-- @brief 获取下载状态
+function onGetDownloadStatus()
+    isDoInstallPackage = false
+    local task = DownloadEx:getStatus(0)
+    Util:logwrite("========task========",task)
+    local percent = 0 
+    if task[1].size and task[1].maxsize and task[1].maxsize ~= 0 then
+        percent = math.floor(task[1].size/task[1].maxsize*100)
+    end
+    if task[1].status == DownloadEx.status.Downloading then
+        toSetDownloadProcessBar(percent)
+    elseif task[1].status == DownloadEx.status.Finished then
+        isDoInstallPackage = true
+        toSetDownloadProcessBar(100)
+        Timer:cancel(timer.appDownLoad)
+        doInstallPackage()
+
+        local count = DownloadEx:getCount()
+        for i = 1, count do
+            DownloadEx:delete(i, false )
+        end
+        return
+    elseif task[1].status == DownloadEx.status.Failed then
+        downloadNewApkError = true
+    end
+    Timer:set(timer.appDownLoad, duration.appDownLoad, 'onGetDownloadStatus')
+end
+
+-- @brief 执行安装
+function doInstallPackage()
+    Util:logwrite("=====doInstallPackage=====")
+    Http:stopNetwork()
+    -- IO:fileRemove('MODULE:\\com_wondertek_listencp\\config.xml')
+    installPackage = getDownloadPath()..'\/listencp\/'.."listencp"..adviceData.version..'.apk'
+    Util:installApp(installPackage)
+end
+
+function toSetDownloadProcessBar(percent)
+    Util:logwrite('percent=======', percent)
+    local processShadow = Sprite:findChild(downloaddialog,'processShadow')
+    local processLabel = Sprite:findChild(downloaddialog, 'processLabel')
+    Sprite:setProperty(processLabel, 'text', percent..'%')
+    local processBar = Sprite:findChild(downloaddialog, 'processBar')
+    local x,y,_,h = Sprite:getRect(processBar)
+    local width = math.ceil((510/100) * percent)
+    Util:logwrite('width=======', width)
+    if width < 3 then
+        width = 0
+    elseif width > 510 then
+        width = 510
+    end
+
+    Sprite:setRect(processBar, 0,0,width,6)
+end
+
+function cancelUpdate( )
+    Timer:cancel(timer.appDownLoad)
+    setAllShoworHide(downloaddialog,0)
+    deleteDownloadTask(adviceData.downloadUrl)
+    finishLoadDataEnterApp()
+    isDoInstallPackage = true
+end
+
+function deleteDownloadTask(downUrl)
+    local task = Download:getStatus(0)
+    local index = 0
+    for i = 1, #task do
+        if task[i].remote == downUrl  then --VersionData.downloadUrl
+            index = i
+            break
+        end
+    end
+    if index == 0 then
+        return
+    end
+    DownloadEx:delete(index,false)
+    -- local downloadPath = getDownloadPath()..'\/listencp\/'.."listencplistencp"..adviceData.version..'.apk'
+    -- Download:deleteByPath(downloadPath, true, true)
+end
+
+function isLoadLaunchImage(launchTable)  --选择启动的图片 
+    local timeTable = os.date("*t", os.time())
+    if tonumber(timeTable.month) < 10 then
+        month = '0'..timeTable.month
+    else
+        month = timeTable.month
+    end
+    if tonumber(timeTable.day) < 10 then
+        day = '0'..timeTable.day
+    else
+        day = timeTable.day
+    end 
+    local sysTime = tonumber(timeTable.year..month..day)  --系统时间年月日  
+    local startTime = timeToNumber(launchTable.startTime) --获取广告投放展示的开始时间 
+    Util:logwrite("=====endTime==11===",launchTable.endTime)
+    local endTime = timeToNumber(launchTable.endTime)     --获取广告投放展示的结束时间
+    Util:logwrite("=====endTime=22====",endTime)
+    Util:logwrite("=====endTime=3333====",launchTable.picUrls[0].picName) 
+    local imageName = launchTable.picUrls[0].picName      --取得展示的广告  
+     
+    if startTime then                                     --如果有广告的开始展示时间,表明有广告要展示
+        Util:logwrite('存在开始时间')
+        if sysTime >= startTime then                      
+            Util:logwrite('大于开始时间')
+            if endTime then
+                Util:logwrite('存在结束时间')
+                if sysTime <= endTime then
+                    Util:logwrite('小于结束时间')
+                    if IO:fileExist(saveFileNames['adviceImg']..imageName) then     --如果有开始时间&&有结束时间&&系统时间在结束和开始之间&&广告图片已下载,则展示广告图片
+                       Util:logwrite('存在文件')        
+                        return true                                                 --则返回true
+                    else                                  --如果图片在本地不存在,则下载图片
+                        -- Util:logwrite("=========launchTable==========",launchTable)
+                        saveTableToLocal(saveFileNames['adviceData'], "adviceData", launchTable) --更新本地保存的adviceData
+                        -- if launchTable.picUrls[0].pic and launchTable.picUrls[0].pic ~= '' then  --如果图片路径存在,则下载图片
+                        --     local count = DownloadEx:getCount()
+                        --     for i = 1, count do
+                        --         DownloadEx:delete(i, false)
+                        --     end
+                        --     DownloadEx:append(saveFileNames['adviceImg']..launchTable.picUrls[0].picName, 'adviceImageName', launchTable.picUrls[0].pic)
+                        -- end
+
+
+                        playImgDown(launchTable.picUrls[0].pic)
+                        IO:fileCopy( Util:getCachePath(launchTable.picUrls[0].pic), saveFileNames['adviceImg']..launchTable.picUrls[0].picName, false)                       
+                        return false                                                --则返回false
+                    end
+                else                                                                --如果超过了结束时间,则返回false
+                    Util:logwrite('大于结束时间')                                   
+                    return false                                                    
+                end
+            else                                                                    --如果没有结束时间,则表明一直展示下去
+                if IO:fileExist(saveFileNames['adviceImg']..imageName) then         --如果图片文件存在,则展示,返回true,其他情况返回false
+                    return true
+                else
+                    return false
+                end
+            end
+        else                                                                        --如果小于开始时间,则说明还没开始展示,则返回false
+            Util:logwrite('小于开始时间')
+            return false
+        end
+    else
+        Util:logwrite('不存在开始时间')
+        if endTime then
+            if sysTime <= endTime then
+                if IO:fileExist(saveFileNames['adviceImg']..imageName) then
+                    return true
+                else
+                    return false
+                end
+            else
+                return false
+            end
+        else
+            if IO:fileExist(saveFileNames['adviceImg']..imageName) then
+                return true
+            else
+                return false
+            end
+        end
+    end
+end
+
+--2015-03-03 09:30 ->20150303
+function timeToNumber(str)
+    if str and str ~= '' then
+        local dateString = Util:split(str, ' ')
+        local date = Util:split(dateString[1], '-')
+        return tonumber(date[1]..date[2]..date[3])
+    else
+        return false
+    end
+end
+
+function dealConnectError(connectTip)
+    
+    if string.match(Alias.home, '^/') then
+        if IO:fileExist( Util:getCachePath(Config:get("server")..Alias.home) ) then
+            Util:logwrite("===========gohome========44444======")
+            if not adviceData or not next(adviceData) or (adviceData.flag ~= '1' and adviceData.flag ~= "2" ) then 
+                gohome()
+            end
+        else
+            Tips:show(connectTip)
+            -- Dialog:show('提示', connectTip, 'ok',"doExit")
+            Util:logwrite("===========gohome========44444===11===")
+            gohome()
+        end 
+    else
+        Util:logwrite("===========gohome========55555======")
+        gohome()
+    end
+end
+
+
+function finishLoadDataEnterApp()   --到时间了,不管加载完毕与否,走跳转home页等方法
+    isFinnishLoadData = true
+    Util:logwrite("==============finishLoadDataEnterApp================")
+    enterApp()
+end
+
+function pressEnterBntEnterApp()
+    isPressEnterBnt = true
+    Util:logwrite("==============pressEnterBntEnterApp================")
+    enterApp()
+end
+
+
+function enterApp()
+    Util:logwrite("===========close===777========")
+    Util:logwrite("==============enterAppenterApp================")
+    Timer:cancel(123)            --关闭定时进入首页的定时器
+    if startShowTime and welcomeShowTime then
+        local timeTable = os.date("*t", os.time())
+        local curTime = tonumber(timeTable.hour)*60*60 + tonumber(timeTable.min)*60 + tonumber(timeTable.sec)
+        if (curTime - startShowTime) >= welcomeShowTime then
+           displayAdvertising()    
+          --  startApp()
+        else
+            Timer:cancel(123)
+            Timer:set(123, ((welcomeShowTime - curTime + startShowTime)*1000), 'displayAdvertising')
+        end
+    else
+       -- startApp()
+        displayAdvertising()
+    end
+end
+
+function displayAdvertising()  
+    Timer:cancel(123)
+    if adviceData and adviceData['adInfo'] and adviceData['adInfo']['ad'] and adviceData['adInfo']['ad'] ~="" and adviceData['adInfo']['ad']['image'] and adviceData['adInfo']['ad']['show'] then
+       if adviceData['adInfo']['ad']['show'] == "1" and Config:get('first_launch') ~= '1' then 
+          Util:logwrite("==========AdvertisingPlayTime======",AdvertisingPlayTime)
+          if AdvertisingPlayTime and AdvertisingPlayTime ~="" and AdvertisingPlayTime ~=0 and adviceData['adInfo']['ad']['image'] ~="" then
+             Count = 0
+             local t = type(AdvertisingPlayTime)
+             Util:logwrite("type====",t)
+             if t == "string" then
+                AdvertisingPlayTime = tonumber(AdvertisingPlayTime)
+             end   
+             Sprite:setProperty(advImg , 'src', AdverImage)
+             ImgExtend()      
+          else
+             startApp() 
+          end 
+       else
+         startApp() 
+       end 
+    else
+      startApp()
+    end            
+end  
+
+function timeCountdown()
+   Timer:cancel(123)
+   if AdvertisingPlayTime == 0 then
+      gohome()
+   else
+      Sprite:setProperty(skipBtnTitle , 'text',  "跳过"..AdvertisingPlayTime)
+      AdvertisingPlayTime = AdvertisingPlayTime-1
+      Timer:set(123, 1000, 'timeCountdown')
+   end 
+end
+
+
+function startApp()
+    Util:logwrite("===========close===999========")
+    Timer:cancel(123)
+    Util:logwrite("===========startAppstartApp==============")
+    if(Config:get("first_launch")=="1") then
+        if isFinnishLoadData then
+            -- Config:set("first_launch","0")
+                Util:logwrite("===========gohome========6666======")
+            gohome()
+        end
+    else
+          Util:logwrite("===========gohome========7777======")
+        gohome()
+    end
+end
+    
+function clickUpload()
+    local data = Sprite:getData(advImg)
+    if data == "1" then
+       UploadData("adclick",true)
+    end   
+end
+
+
+function ImgExtend()
+   Timer:cancel(1000)
+   local ImgIsShow = imgShowOver(advImg)
+   Util:logwrite("ImgIsShow====",ImgIsShow)
+   if ImgIsShow == true then -- 图片已经缓冲好了
+      Sprite:setProperty(advImg,"data",'1') 
+      setAllShoworHide(spreadNode, 1)
+      UploadData("adshowed")
+      timeCountdown()  
+   else
+      Util:logwrite("图片还在缓冲")
+      Count = Count+1
+      if Count == 5 then  -- 2秒缓冲还没好，直接跳首页
+         startApp()
+      else 
+         Timer:set(1000, 500, 'ImgExtend') --0.5秒后再去查看图片缓冲情况
+      end   
+   end 
+end
+
+function imgShowOver(ImgSprite)
+    local src_w,src_h = Sprite:getProperty(ImgSprite, "src_size")
+    Util:logwrite("src_size===",Sprite:getProperty(ImgSprite, "src_size")) 
+    if src_w == 0 or src_h == 0 then
+       return false
+    else    
+       return true
+    end   
+end
+
+function UploadData(behavior_type,isClick)
+    if adviceData ~= nil then
+       if adviceData.adInfo and  adviceData.adInfo['uploadFlag'] and  adviceData.adInfo['uploadFlag'] == "true" then
+          local adInfo = adviceData.adInfo
+          if adInfo['ad'] and adInfo['app_id'] and adInfo["place_id"] and adInfo['ad'] ~="" then
+             local appid = adInfo["app_id"]
+             local placeid = adInfo["place_id"]
+             local adid = adInfo["ad"]["id"]
+             if adInfo['ad']['effect'] and adInfo['ad']['effect'] ~="" then 
+                local effect = adInfo['ad']['effect'] 
+                --Util:logwrite("effect===",effect)        
+                if effect == "link" then
+                   if behavior_type =="adclick" then
+                      Util:openURL(adInfo['ad']['link'])      
+                   end            
+                elseif effect == "download" then
+                       if behavior_type =="adclick" then
+                          if adInfo['ad']["download"] and adInfo['ad']["download"]["link"] then
+                             Util:openURL(adInfo['ad']["download"]['link'])
+                             Util:logwrite("dao l 11")
+                          end   
+                       end  
+                else                                 
+                end  
+             end  
+            imm = adInfo.ad.imm
+            clm = adInfo.ad.clm -- 广告点击上报数组
+            if isClick and clm and clm~="" then
+                for i=0,#clm do
+                    sendAbbrTwo(clm[i].reporturl,clm[i].reporttime) -- 光告曝光方法 第一个参数：曝光地址；第二个参数：曝光时长；
+                end
+            elseif imm and imm ~="" then
+                for i=0,#imm do
+                    sendAbbrTwo(imm[i].reporturl,imm[i].reporttime) -- 光告曝光方法 第一个参数：曝光地址；第二个参数：曝光时长；
+                end
+            else
+                sendAbbr(appid,adid,placeid,behavior_type)
+            end
+          end  
+       end    
+    end
+end    
+
+function showVersionNode ( )
+    -- body
+    ListView:removeAllItems(updateList)
+    ListView:loadItem(updateList,versionItem,1,'onLoadItem')
+    ListView:adjust(updateList)
+    local item = ListView:getItem(updateList, 0)
+    Util:logwrite('=========item======',item)
+    local x,y,w,h = Sprite:getFactRect(item)
+    Util:logwrite('=========h====111111111==',h)
+    
+    if h > 400 then
+        h = 400
+    end
+    local l_x,l_y,l_w,l_h = Sprite:getRect(updateList)
+    Util:logwrite('======l_h=========',l_h)
+    local v_x,v_y,v_w,v_h = Sprite:getRect(versionDetail)
+    Sprite:setRect(updateList, l_x,l_y,l_w,h)
+    ListView:adjust(updateList)
+    if h > l_h then
+        local u_x,u_y,u_w,u_h = Sprite:getRect(upgradeTips)
+        Sprite:setRect(upgradeTips, u_x,u_y+h-l_h,u_w,u_h)
+        Sprite:setRect(versionDetail, v_x,v_y,v_w,v_h+h-l_h)
+        Util:logwrite('======v_h===========',v_h+h)
+        local b_x,b_y,b_w,b_h = Sprite:getRect(bgImage)
+        local a_x,a_y,a_w,a_h = Sprite:getRect(btnAreaNode)
+        Util:logwrite('======h-l_h===========',h)
+        Util:logwrite('======h-l_h===========',l_h)
+        Util:logwrite('======h-l_h===========',h-l_h)
+        Util:logwrite('======a_y+h-l_h===========',a_y+h-l_h)
+        Util:logwrite('======a_y===========',a_h)
+        Sprite:setProperty(bgImage,'rect',b_x,b_y,b_w,v_h+h)
+        -- Sprite:setProperty(btnAreaNode,'rect',a_x,a_y+h-l_h,a_w,a_h)
+        Sprite:setRect(btnAreaNode,a_x,a_y+h-l_h,a_w,a_h)
+    else
+
+    end
+end
+
+function settingDownBtn( )
+    -- body
+    local downBtn = Sprite:findChild(versionDetail,'downBtn')
+    local closeBtn = Sprite:findChild(versionDetail,'closeBtn')
+    local upgradeTips = Sprite:findChild(versionDetail,'upgradeTips')
+    local closeBtn = Sprite:findChild(versionDetail,'closeBtn')
+    local label = Sprite:findChildByClass(closeBtn,'label')
+    Sprite:setProperty(label,'text','退出')
+    -- local s = Sprite:findChild(downBtn,'s')
+    -- local label = Sprite:findChildByClass(downBtn,'label')
+    -- setAllShoworHide(closeBtn,0)
+    -- setAllShoworHide(upgradeTips,0)
+    -- Sprite:setRect(downBtn,0,0,560,100)
+    -- Sprite:setRect(s,0,0,560,100)
+    -- Sprite:setRect(label,0,0,560,100)
+
+    local cancelUpdateBtn = Sprite:findChild(downloaddialog,'cancelUpdateBtn')
+    setAllShoworHide(cancelUpdateBtn,0)
+
+end
+
+function onLoadItem(list,item,index)
+    local messageText = Sprite:findChild(item, 'messageText')
+    local dialogMessage = adviceData.resultMsg
+    Sprite:setProperty(messageText, 'text', dialogMessage) 
+    _, _, _, height = Sprite:getRect(messageText)
+    Util:logwrite('height===111111111111===============', height)
+    Sprite:setRect(item,0,0,520,height)
+    Sprite:setProperty(item,"extendstyle","1010")
+end
+
+function agreementSelOnSelect(sprite )
+    
+    -- body  Config:set('tip_upDate',adviceData.version..'|'..'1') choose
+    local image = Sprite:findChild(sprite,'ageSelPic')
+    local date = Sprite:getData(sprite)
+    Util:logwrite("=======date===========",date)
+    if date == '0' then 
+        Config:set('tip_upDate',adviceData.version..'|'..'1')
+        Sprite:setProperty(image,'src',"file://image/choose.png")
+        Sprite:setProperty(sprite,'data',"1")
+    elseif date == '1' then
+        Config:set('tip_upDate',adviceData.version..'|'..'0')
+        Sprite:setProperty(image,'src',"file://image/check_box.png")
+        Sprite:setProperty(sprite,'data',"0")
+    end
+end
+
+function getAccessToken()    --获取蜻蜓token的方法
+    local access_token_postData="client_id="..Config:get("qt_client_id").."&client_secret="..Config:get("qt_client_secret")
+    -- Http:request("access_token", "http://api.open.qingting.fm/access?&grant_type=client_credentials", 108, {method = "post", useCache = false, postData = access_token_postData})
+end
+
+--@brief 升级后恢复Config设置
+function restoreConfig()
+    if IO:fileExist(saveFileNames["user"]) then   --如果之前有登录过,保存在本地user.xml文件中
+        -- local userData = loadKeyValueFromXml(saveFileNames["user"])
+        local userData = Util:stringToTable(getTableFromLocal(saveFileNames['user'], "userData"))  --读取user.xml中的userData表单
+        Util:logwrite("========userData============",userData)
+        if userData and userData ~= "" then  --如果表单不为空
+            Config:set('login','1')          --设置成已登录
+            Config:set('accountType',userData.accountType or '')  --登录类型,3g,WiFi,一键登录等
+            Util:setLoginName(userData.accountName or '')--登录名
+            Config:set('userId',userData.userId or '')
+            Config:set('sname',userData.sname or '')--昵称
+            Config:set('name',userData.name or '')  
+            Config:set('token',userData.token or '')
+            Config:set('sex',userData.sex or '')
+            Config:set('pswd',userData.pswd or '') --密码
+        end
+        wduuidTabel = Util:stringToTable(getTableFromLocal(saveFileNames['user'], "wduuid"))  --设备的唯一id
+        Util:logwrite("========wduuidTabel============",wduuidTabel)
+        if wduuidTabel and wduuidTabel ~= "" then
+            Config:set('wduuid',wduuidTabel.wduuid or '')   
+        end
+    end
+end
+
+-- 根据不同的分辨率切换不同的启动图
+function switchWelcomeImg( width, height )
+    local Wimage = Sprite:findChild(rootSprite,'Wimage')
+    if isIphone() or true then
+        if width == 640 and height == 960 then
+            Sprite:setProperty(Wimage,'src','file://image/640_960.png')
+        elseif width == 640 and height == 1136 then
+            Sprite:setProperty(Wimage,'src','file://image/640_1136.png')
+        elseif width == 750 and height == 1334 then
+            Sprite:setProperty(Wimage,'src','file://image/750_1334.png')
+        elseif width == 1242 and height == 2280 then
+            Sprite:setProperty(Wimage,'src','file://image/1242_2208.png')
+        end
+    end
+end
+
+-- 客户端自动更新common和index页面
+function downloadCommonAndListItem(  )
+    -- body
+    -- deleteDownloadCommon(  )
+    Util:logwrite("=============1111111===================")
+    IO:dirCreate('MODULE:\\com_listencp_client\\common\\')
+    if isOnPhone() and string.match(Alias.home, '^/') then
+        getCommon( "common" ,130)
+        getCommon( "listItem" ,131)
+        if Config:get("reloadINdex") == '1' then
+            getCommon( "homeIndex" ,132)
+        end
+        getCommon( "player" ,133)
+        -- getCommon( "home" ,134)
+    end
+
+end
+
+function getCommon( fileName ,rMsg)
+    -- body
+    local tempmd5common =string.upper( Util:md5(Alias[fileName]) )
+    local localModifiedTime =  getTableFromLocal(saveFileNames['md5Value'].."sceneModified.xml", tempmd5common)
+    Util:logwrite("=============localModifiedTime==========="..fileName,localModifiedTime)
+    Util:logwrite("=============sceneModifiedData[tempmd5common]============"..fileName,sceneModifiedData[tempmd5common])
+    if sceneModifiedData and sceneModifiedData[tempmd5common] then
+        if tonumber(localModifiedTime) ~= tonumber(sceneModifiedData[tempmd5common]) then
+            -- Util:logwrite("=============请求最新的==============="..fileName)
+            -- Util:logwrite("==request=URl=",Config:get("server")..Alias[fileName])
+            Http:request('commonData', Config:get("server")..Alias[fileName],rMsg,{fileName=Util:getCachePath(Config:get("server")..Alias[fileName])})
+            -- Http:requestResource('homeIndexData',  Alias["homeIndex"]) 
+        end
+    end
+end
+
+function createPlayer()
+    Util:addStatusBar()
+    SpriteWindow_Open(windowNodes)
+    System:startMonitor(0)
+    local xa,ya,wa,ha = Sprite:getFactRect(windowNodes)
+    Util:logwrite("createPlayer ====",xa,ya,wa,ha)
+    Player:create(xa,ya,wa,ha)
+    if Config:get('wdclienttype') == '04' then
+        Player:moveWindow(xa,ya,wa,ha)
+    end
+    -- Util:screenRotate(0)
+    Player:show(1)
+    openUrl()
+    -- Timer:set(1, 500, 'openUrl')
+end
+
+function openUrl()
+    -- local playUrl = 'http://221.130.165.134:8081/Uploads/files/video.mp4'
+    Util:logwrite("playUrl =",playUrl)
+    Player:open(playUrl,'WLAN',0,0)
+    -- Player:setFullScreen(1)
+    -- Player:setResizeFormat(2) 
+    Player:show(1)
+    getPlayStatus()
+end
+
+
+function getPlayStatus()
+    local status = Player:getStatus()
+    Log:write("status================",status)
+
+    if status == Player.status.Playing then
+        setAllShoworHide(goNode,1)--显示跳过视频控件按钮
+        -- local curTime = Player:getCurTime() 
+        -- local totalTime = Player:getTotalTime() 
+        -- if curTime == totalTime then
+        --     -- Player:stop()
+        --     -- Player:pause() 
+        -- end
+        setAllShoworHide(shareBarNode,0) --分享栏
+    elseif status == Player.status.Buffering then
+        Util:logwrite("======getBufferPercent========",Player:getBufferPercent())
+    elseif status == Player.status.Paused then
+    elseif status == Player.status.Stopped then
+        -- Player:show(0)
+        -- gohome()
+    elseif status == Player.status.Finished then
+        -- Player:pause()
+        -- Config:set('first_launch','0')
+        Player:stop()
+        Player:show(0)
+        setAllShoworHide(shareBarNode,1)
+        SpriteWindow_Close(windowNodes)
+        if not letGoHomme then
+
+            setAllShoworHide(windowNodes,0) --分享窗口
+            setAllShoworHide(palyOKNode,1) --分享窗口
+        end
+        setAllShoworHide(shareBarNode,1) --分享栏
+        return
+    end
+    Timer:set(1, 500, 'getPlayStatus')
+
+end
+
+---------------------------------------------------------分享控件---------------------------------------------------------------------
+function goButton()  --马上听书 
+    Util:logwrite("进去了")
+    if adviceData and adviceData ~= "" then
+        Util:logwrite("===========gohome========8888======")
+        gohome()   
+    else 
+        firstGoHome = true
+        requestAdviceData()  --获取loading请求
+    end  
+end
+function letGo() --跳过按钮
+    -- Config:set('first_launch','0')
+    setAllShoworHide(palyOKNode,0) --分享窗口
+    setAllShoworHide(goNode,0) --分享窗口
+    letGoHomme = true
+    Player:stop()
+    Player:show(0)
+    SpriteWindow_Close(windowNodes)
+    Util:logwrite("===========gohome========9999======")
+    gohome()
+end    
+
+function backBtutton() --分析取消
+    setAllShoworHide(shareNode,0)
+    setAllShoworHide(shareBarNode,1)    
+end
+
+function shareFriendButton()  --分享好友入口按钮   
+    setAllShoworHide(shareNode,1)
+      
+    setAllShoworHide(shareBarNode,0)
+      -- setAllShoworHide(palyOKNode,)
+      -- setAllShoworHide(shareNode,1)
+end
+function shareFriendTaye(sprite)
+    local s = sprite
+    Share_BtnOnselected(s)
+    backBtutton()
+end 
+----------------------------------------------------------统一登录sdk---------------------------------------------------------------------
+function autoBLLogin(netType) --参数为登录方式"wap"、"datasms"或"mannal"以及"default"
+    local accountName=Util:getLoginName()  --获取accountName,如果没有则为""
+    local switchUrl=Config:get("server").."/publish/clt/resource/cltif/v2/sdkSwitch.jsp?" --开关打开状态的网络请求url
+    Util:logwrite("===========BLMigu登录方式==========",netType..";"..accountName.."") 
+    if accountName~=nil and accountName~="" then --如果不为空或空字符串,则直接走loading.jsp,若是没有登陆过,则走自动登录去获取游客账号.
+       requestAdviceData()  --loading.jsp请求
+    else
+       Util:httpClient("switchData",switchUrl,122,'post',false,nil,1000)   --发送请求去获取sdk开关状态
+       --Timer:set(444, 3000, "whenSwitchDataIsNull")               --做一个保护,如果几秒之后统一登录的流程没走完,则调用下Loading.jsp去获取信息
+    end   
+end
+function initBLListener()  --初始化监听器
+    if isOnPhone() and getPlatform()=="Android" then
+       BLMigu:setListen("BLListener")--首先设置好监听器
+    end
+end
+
+function BLListener(strMG) --统一登录监听器
+    Util:logwrite("strMG ====",strMG)
+    if strMG and strMG~="" then
+       local tableMG=Json:loadString2Table(strMG)
+       Util:logwrite("tableMG ====",tableMG) 
+       if tableMG and tableMG~="" and tableMG.message and tableMG.message~="" then
+          local tokenTable=Util:split(tableMG.message,';')
+          Util:logwrite("tokenTable ====",tokenTable)
+          if tokenTable[1]=="getAccessToken" then  --获取自动登录时候的token,即调用getAccessToken方法
+             if tokenTable[2]=="102000" then  --获取BLMiguToken获取成功
+                local miguToken=tokenTable[3]
+                Util:logwrite("miguToken ====",miguToken)  --打印miguToken
+                local url = Config:get('server').."/v2/clt/miguTokenAuthenticate.msp?migutoken="..miguToken
+                Util:httpClient('tokenAuthenticate',url,120,'post',false)  --发送请求到后台验证miguToken
+             else                                                     --自动登录失败,即获取miguToken失败,就直接走loading.jsp
+                BLMigu:cleanSSO()
+                requestAdviceData()
+             end
+          elseif tokenTable[1]=="getAccessTokenByCondition" then   --手动登录的情况,即调用getAccessTokenByCondition方法       
+             if tokenTable[2] and tokenTable[2]~="" then   --如果有内容且内容不为空,即有token
+                local miguToken=tokenTable[2]            
+                Util:logwrite("miguToken ====",miguToken)  --打印miguToken
+                -- BLMigu:finishAllMiguActivitys()  --关闭所有的sdk界面
+                local url = Config:get('server').."/v2/clt/miguTokenAuthenticate.msp?migutoken="..miguToken
+                Util:httpClient('tokenAuthenticate',url,121,'post',false)  --发送请求到后台验证miguToken
+             else                                                     --自动登录失败,即获取miguToken失败,就直接走loading.jsp
+                BLMigu:cleanSSO()
+                requestAdviceData()
+             end
+          elseif tokenTable[1]=="getAccountList" then   --获取用户缓存的登录账号列表
+             if tokenTable[2]=="102000" and tokenTable[3]~="" then  --如果执行成功,且返回不为空,则执行下一步
+                local userTable=Json:loadString2Table(tokenTable[3])
+                Util:logwrite("userTable ====",userTable)--打印解析出来
+                
+             end
+          elseif tokenTable[1]=="setThirdAuthn" then    --第三方登录 
+             if tokenTable[2]=="WEIBO" then  --如果是微博登录
+                Share:authBySinaWeibo()
+                Reg:setString(Reg:create(Reg.com_listencp_client.home),'shareType','3')
+             elseif tokenTable[2]=="QQ" then --如果是qq登录
+                Share:authByQQConnect()
+             elseif tokenTable[2]=="WECHAT" then --如果是微信登录
+                Share:authByWechat()
+             else
+                BLMigu:cleanSSO()
+             end
+          end
+       end
+    end
+end
+
+function msg120()  --验证getAccessToken方法的miguToken的方法 
+    local tokenAuthenticate = Http:jsonDecode('tokenAuthenticate')
+    Util:logwrite("===========tokenAuthenticate==========",tokenAuthenticate)
+    --如果有返回值且能够解析的情况且状态为'1',则为鉴权成功
+    if tokenAuthenticate and tokenAuthenticate~="" and tokenAuthenticate.resultCode and tokenAuthenticate.resultCode=="1" then  
+       Util:logwrite("===========tokenState鉴权成功!==========")
+       ----------------------然后将验证通过的数据保存在本地和config.xml里面-----------------------------------
+       Config:set('login','1')                  --标记为已登录
+       Config:set('accountType',tokenAuthenticate.userInfo.accountType or '')  --用户类型,手机账号或者邮箱账号
+       Util:setLoginName(tokenAuthenticate.userInfo.accountName or '')--登录名
+       Config:set('userId',tokenAuthenticate.userInfo.userId or '')
+       Config:set('sname',tokenAuthenticate.userInfo.sname or '')--昵称
+       Config:set('name',tokenAuthenticate.userInfo.name or '')
+       Config:set('token',tokenAuthenticate.userInfo.token or '')  
+       Config:set('sex',tokenAuthenticate.userInfo.sex or '') 
+       local reg = Reg:create(Reg.com_listencp_client.index)
+        BLMigu:notifyLoginResult(tokenAuthenticate.userInfo.accountName)
+
+       Reg:setString(reg,"miguPassid",tokenAuthenticate.userInfo.passid)     --在数据仓库里面保存passid  
+       saveTableToLocal(saveFileNames["user"], "userData", tokenAuthenticate.userInfo)  --保存在本地
+       requestAdviceData()  --因为数据已经写入了,所以可以调用loading.jsp从sdk的环境获取内容了
+    else   --如果返回的数据有问题或状态码为"0",同为验证token失败
+       Util:logwrite("===========tokenState鉴权失败!==========")
+       BLMigu:cleanSSO()--验证token失败,则清理下环境
+       local reg = Reg:create(Reg.com_listencp_client.index)
+       Reg:setString(reg,"miguPassid","")    --登录失败,则清理掉passid 
+       requestAdviceData()  --验证token失败,则后台从原本的环境而不是统一登录的环境去获取loading.jsp内容
+    end
+end
+function msg121()  --验证getAccessTokenByCondition方法的miguToken的方法(该页面不用)
+    local tokenAuthenticate = Http:jsonDecode('tokenAuthenticate')
+    Util:logwrite("===========tokenAuthenticate==========",tokenAuthenticate)
+    --如果有返回值且能够解析的情况且状态为'1',则为鉴权成功
+    if tokenAuthenticate and tokenAuthenticate~="" and tokenAuthenticate.resultCode and tokenAuthenticate.resultCode=="1" then  
+       Util:logwrite("===========tokenState鉴权成功!==========")
+       ----------------------然后将验证通过的数据保存在本地和config.xml里面-----------------------------------
+       Config:set('login','1')                  --标记为已登录
+       Config:set('accountType',tokenAuthenticate.userInfo.accountType or '')  --用户类型,手机账号或者邮箱账号
+       Util:setLoginName(tokenAuthenticate.userInfo.accountName or '')--登录名
+       Config:set('userId',tokenAuthenticate.userInfo.userId or '')
+       Config:set('sname',tokenAuthenticate.userInfo.sname or '')--昵称
+       Config:set('name',tokenAuthenticate.userInfo.name or '')
+       Config:set('token',tokenAuthenticate.userInfo.token or '')  
+       Config:set('sex',tokenAuthenticate.userInfo.sex or '')
+       local reg = Reg:create(Reg.com_listencp_client.index)
+        BLMigu:notifyLoginResult(tokenAuthenticate.userInfo.accountName)
+       
+       Reg:setString(reg,"miguPassid",tokenAuthenticate.userInfo.passid)     --在数据仓库里面保存passid     
+       saveTableToLocal(saveFileNames["user"], "userData", tokenAuthenticate.userInfo)  --保存在本地
+       requestAdviceData()  --因为数据已经写入了,所以可以调用loading.jsp从sdk的环境获取内容了      
+    else   --如果返回的数据有问题或状态码为"0",同为验证token失败
+       Util:logwrite("===========tokenState鉴权失败!==========")
+       BLMigu:cleanSSO()--验证token失败,则清理下环境
+       requestAdviceData()  --验证token失败,则后台从原本的环境而不是统一登录的环境去获取loading.jsp内容
+    end
+end
+
+function msg122()  --统一登录的开关返回数据
+    local switchData = Http:jsonDecode('switchData')
+    if switchData and switchData.migu_sdk_switch and switchData.migu_sdk_switch == "1" then
+       local accountName=Util:getLoginName()
+       BLMigu:getAccessToken(Config:get("MGappid"),Config:get("MGappkey"),accountName,"default")   --自动登录获取token 
+       --Timer:cancel(123)                        --则取消123定时器  --(测试用)
+       --BLMigu:getAccessTokenByCondition(Config:get("MGappid"), Config:get("MGappkey"),"2","","")   --(测试手动界面登录)
+       --BLMigu:showUserInfo(Config:get("MGappid"), Config:get("MGappkey"), accountName)   --(测试个人中心界面)--
+       --BLMigu:getAccountList(Config:get("MGappid"), Config:get("MGappkey"))  --(测试登陆过的用户列表)
+       --BLMigu:changeAccount(accountName)        --(测试切换账号)
+    else 
+       requestAdviceData() --loading.jsp
+    end
+end
+
+function ListenCBdetail( strRet )
+    -- setAllShoworHide(shareNode,0)
+    backBtutton()
+    Util:listenCBShare(strRet)
+end
+
+function backgroundPlayListen( strRet )
+    -- body
+    Util:logwrite("==========strRet=============",strRet)
+    Util:pleyNextOrPre(strRet)
+end
+
+    ]]>
+</root>

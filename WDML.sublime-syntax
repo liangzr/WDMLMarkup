@@ -1,0 +1,298 @@
+%YAML 1.2
+---
+name: WDML
+file_extensions:
+  - wdml
+first_line_match: '^<\?xml '
+scope: text.wdml
+variables:
+  # This is the full XML Name production, but should not be used where namespaces
+  # are possible. Those locations should use a qualified_name.
+  name: '[[:alpha:]:_][[:alnum:]:_.-]*'
+  # This is the form that allows a namespace prefix (ns:) followed by a local
+  # name. The captures are:
+  #  1: namespace prefix name
+  #  2: namespace prefix colon
+  #  3: local tag name
+  qualified_name: '(?:([[:alpha:]_][[:alnum:]_.-]*)(:))?([[:alpha:]_][[:alnum:]_.-]*)'
+
+contexts:
+  main:
+    - match: '(<\?)\s*({{qualified_name}})'
+      captures:
+        1: punctuation.definition.tag.begin.wdml
+        2: entity.name.tag.wdml
+      push:
+        - meta_scope: meta.tag.preprocessor.wdml
+        - match: \?>
+          scope: punctuation.definition.tag.end.wdml
+          pop: true
+        - match: '\s+{{qualified_name}}(=)?'
+          captures:
+            1: entity.other.attribute-name.namespace.wdml
+            2: entity.other.attribute-name.wdml punctuation.separator.namespace.wdml
+            3: entity.other.attribute-name.localname.wdml
+            4: punctuation.separator.key-value.wdml
+        - include: double-quoted-string
+        - include: single-quoted-string
+    - match: '(<!)(DOCTYPE)(?:\s+({{name}}))?'
+      captures:
+        1: punctuation.definition.tag.begin.wdml
+        2: keyword.doctype.wdml
+        3: variable.documentroot.wdml
+      push:
+        - meta_scope: meta.tag.sgml.doctype.wdml
+        - match: \s*(>)
+          captures:
+            1: punctuation.definition.tag.end.wdml
+          pop: true
+        - include: internal-subset
+    - match: '<!--'
+      scope: punctuation.definition.comment.begin.wdml
+      push:
+        - meta_scope: comment.block.wdml
+        - match: '-->'
+          scope: punctuation.definition.comment.end.wdml
+          pop: true
+    - match: '(</?){{qualified_name}}([^/>\s]*)'
+      captures:
+        1: punctuation.definition.tag.begin.wdml
+        2: entity.name.tag.namespace.wdml
+        3: entity.name.tag.wdml punctuation.separator.namespace.wdml
+        4: entity.name.tag.localname.wdml
+        5: invalid.illegal.bad-tag-name.wdml
+      push:
+        - meta_scope: meta.tag.wdml
+        - match: /?>
+          scope: punctuation.definition.tag.end.wdml
+          pop: true
+        - include: tag-stuff
+    - match: '(</?)([[:digit:].-][[:alnum:]:_.-]*)'
+      captures:
+        1: punctuation.definition.tag.begin.wdml
+        2: invalid.illegal.bad-tag-name.wdml
+      push:
+        - meta_scope: meta.tag.wdml
+        - match: /?>
+          scope: punctuation.definition.tag.end.wdml
+          pop: true
+        - include: tag-stuff
+    - include: entity
+    - match: '<!\[CDATA\['
+      scope: source.lua.begin.wdml
+      push:
+        - match: '\b(function)\s+([a-zA-Z_.:]+[.:])?([a-zA-Z_]\w*)\s*(\()([^)]*)(\))'
+          scope: meta.function.lua
+          captures:
+            1: keyword.control.lua
+            2: entity.name.function.scope.lua
+            3: entity.name.function.lua
+            4: punctuation.definition.parameters.begin.lua
+            5: variable.parameter.function.lua
+            6: punctuation.definition.parameters.end.lua
+        - match: '(?<![\d.])\b0[xX][a-fA-F\d\.]+([pP][\-\+]?\d+)?|\b\d+(\.\d+)?([eE]-?\d+)?|\.\d+([eE]-?\d+)?'
+          scope: constant.numeric.lua
+        - match: "'"
+          captures:
+            0: punctuation.definition.string.begin.lua
+          push:
+            - meta_scope: string.quoted.single.lua
+            - match: "'"
+              captures:
+                0: punctuation.definition.string.end.lua
+              pop: true
+            - match: '\\([abfnrtv\\"'']|\r?\n|\n\r?|\d\d?\d?)'
+              scope: constant.character.escape.lua
+            - match: '\\[xX][0-9a-fA-F][0-9a-fA-F]'
+              scope: constant.character.escape.lua
+            - match: '\\u\{[0-9a-fA-F]{,7}\}'
+              scope: constant.character.escape.lua
+        - match: '"'
+          captures:
+            0: punctuation.definition.string.begin.lua
+          push:
+            - meta_scope: string.quoted.double.lua
+            - match: '"'
+              captures:
+                0: punctuation.definition.string.end.lua
+              pop: true
+            - match: '\\([abfnrtv\\"'']|\r?\n|\n\r?|\d\d?\d?)'
+              scope: constant.character.escape.lua
+            - match: '\\[xX][0-9a-fA-F][0-9a-fA-F]'
+              scope: constant.character.escape.lua
+            - match: '\\u\{[0-9a-fA-F]{,7}\}'
+              scope: constant.character.escape.lua
+        - match: '(?<!--)\[(=*)\['
+          captures:
+            0: punctuation.definition.string.begin.lua
+          push:
+            - meta_scope: string.quoted.other.multiline.lua
+            - match: '\]\1\]'
+              captures:
+                0: punctuation.definition.string.end.lua
+              pop: true
+        - match: '--\[(=*)\['
+          captures:
+            0: punctuation.definition.comment.lua
+          push:
+            - meta_scope: comment.block.lua
+            - match: '\]\1\]'
+              captures:
+                0: punctuation.definition.comment.lua
+              pop: true
+        - match: '(--)(?!\[\[).*$\n?'
+          scope: comment.line.double-dash.lua
+          captures:
+            1: punctuation.definition.comment.lua
+        - match: \b(break|do|else|for|if|elseif|return|then|repeat|while|until|end|function|local|in)\b
+          scope: keyword.control.lua
+        - match: '(?<![^.]\.|:)\b(false|nil|true|_G|_VERSION|math\.(pi|huge))\b|(?<![.])\.{3}(?!\.)'
+          scope: constant.language.lua
+        - match: '(?<![^.]\.|:)\b(self)\b'
+          scope: variable.language.self.lua
+        - match: '(?<![^.]\.|:)\b(assert|collectgarbage|dofile|error|getfenv|getmetatable|ipairs|loadfile|loadstring|module|next|pairs|pcall|print|rawequal|rawget|rawset|require|select|setfenv|setmetatable|tonumber|tostring|type|unpack|xpcall)\b(?=[( {"''\[])'
+          scope: support.function.lua
+        - match: '(?<![^.]\.|:)\b(coroutine\.(create|resume|running|status|wrap|yield)|string\.(byte|char|dump|find|format|gmatch|gsub|len|lower|match|rep|reverse|sub|upper)|table\.(concat|insert|maxn|remove|sort)|math\.(abs|acos|asin|atan2?|ceil|cosh?|deg|exp|floor|fmod|frexp|ldexp|log|log10|max|min|modf|pow|rad|random|randomseed|sinh?|sqrt|tanh?)|io\.(close|flush|input|lines|open|output|popen|read|tmpfile|type|write)|os\.(clock|date|difftime|execute|exit|getenv|remove|rename|setlocale|time|tmpname)|package\.(cpath|loaded|loadlib|path|preload|seeall)|debug\.(debug|[gs]etfenv|[gs]ethook|getinfo|[gs]etlocal|[gs]etmetatable|getregistry|[gs]etupvalue|traceback))\b(?=[( {"''\[])'
+          scope: support.function.library.lua
+        - match: \b(and|or|not)\b
+          scope: keyword.operator.lua
+        - match: '\+|-|%|#|\*|\/|\^|==?|~=|<=?|>=?|(?<!\.)\.{2}(?!\.)'
+          scope: keyword.operator.lua
+        - meta_scope: source.lua
+        - match: ']]>'
+          scope: source.lua.end.wdml
+          pop: true
+    - include: should-be-entity
+  should-be-entity:
+    - match: '&'
+      scope: invalid.illegal.bad-ampersand.wdml
+    - match: '<'
+      scope: invalid.illegal.missing-entity.wdml
+    - match: '>'
+      scope: invalid.illegal.missing-entity.wdml
+  double-quoted-string:
+    - match: '"'
+      scope: punctuation.definition.string.begin.wdml
+      push:
+        - meta_scope: string.quoted.double.wdml
+        - match: '"'
+          scope: punctuation.definition.string.end.wdml
+          pop: true
+        - include: entity
+        - include: should-be-entity
+  entity:
+    - match: '(&)(?:{{name}}|#[0-9]+|#x\h+)(;)'
+      scope: constant.character.entity.wdml
+      captures:
+        1: punctuation.definition.constant.wdml
+        2: punctuation.definition.constant.wdml
+  internal-subset:
+    - match: \[
+      scope: punctuation.definition.constant.wdml
+      push:
+        - meta_scope: meta.internalsubset.wdml
+        - match: \]
+          pop: true
+        - include: entity-decl
+        - include: element-decl
+        - include: attlist-decl
+        - include: notation-decl
+        - include: parameter-entity
+  entity-decl:
+    - match: '(<!)(ENTITY)\s+(%\s+)?({{name}})(\s+(?:SYSTEM|PUBLIC)\s+)?'
+      captures:
+        1: punctuation.definition.tag.begin.wdml
+        2: keyword.entity.wdml
+        3: punctuation.definition.entity.wdml
+        4: variable.entity.wdml
+        5: keyword.entitytype.wdml
+      push:
+        - match: '>'
+          scope: punctuation.definition.tag.end.wdml
+          pop: true
+        - include: double-quoted-string
+        - include: single-quoted-string
+  element-decl:
+    - match: '(<!)(ELEMENT)\s+({{name}})\s+'
+      captures:
+        1: punctuation.definition.tag.begin.wdml
+        2: keyword.element.wdml
+        3: variable.element.wdml
+      push:
+        - match: '>'
+          scope: punctuation.definition.tag.end.wdml
+          pop: true
+        - match: '\b(EMPTY|ANY)\b'
+          scope: constant.other.wdml
+        - include: element-parens
+  element-parens:
+    - match: \(
+      scope: punctuation.definition.group.wdml
+      push:
+        - match: (\))([*?+])?
+          captures:
+            1: punctuation.definition.group.wdml
+            2: keyword.operator.wdml
+          pop: true
+        - match: '#PCDATA'
+          scope: constant.other.wdml
+        - match: '[*?+]'
+          scope: keyword.operator.wdml
+        - match: '[,|]'
+          scope: punctuation.separator.wdml
+        - include: element-parens
+  attlist-decl:
+    - match: '(<!)(ATTLIST)\s+({{name}})\s+({{name}})'
+      captures:
+        1: punctuation.definition.tag.begin.wdml
+        2: keyword.attlist.wdml
+        3: variable.element.wdml
+        4: variable.attribute-name.wdml
+      push:
+        - match: '>'
+          scope: punctuation.definition.tag.end.wdml
+          pop: true
+        - include: double-quoted-string
+        - include: single-quoted-string
+  notation-decl:
+    - match: '(<!)(NOTATION)\s+({{name}})'
+      captures:
+        1: punctuation.definition.tag.begin.wdml
+        2: keyword.notation.wdml
+        3: variable.notation.wdml
+      push:
+        - match: '>'
+          scope: punctuation.definition.tag.end.wdml
+          pop: true
+        - include: double-quoted-string
+        - include: single-quoted-string
+  parameter-entity:
+    - match: '(%){{name}}(;)'
+      scope: constant.character.parameter-entity.wdml
+      captures:
+        1: punctuation.definition.constant.wdml
+        2: punctuation.definition.constant.wdml
+  single-quoted-string:
+    - match: "'"
+      scope: punctuation.definition.string.begin.wdml
+      push:
+        - meta_scope: string.quoted.single.wdml
+        - match: "'"
+          scope: punctuation.definition.string.end.wdml
+          pop: true
+        - include: entity
+        - include: should-be-entity
+  tag-stuff:
+    - match: '(?:\s+|^){{qualified_name}}\s*(=)'
+      captures:
+        1: entity.other.attribute-name.namespace.wdml
+        2: entity.other.attribute-name.wdml punctuation.separator.namespace.wdml
+        3: entity.other.attribute-name.localname.wdml
+        4: punctuation.separator.key-value.wdml
+    - match: '(?:\s+|^)([[:alnum:]:_.-]+)\s*(=)'
+      captures:
+        1: invalid.illegal.bad-attribute-name.wdml
+        2: punctuation.separator.key-value.wdml
+    - include: double-quoted-string
+    - include: single-quoted-string
+

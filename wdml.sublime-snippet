@@ -1,0 +1,79 @@
+<snippet>
+	<content>
+		<![CDATA[
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ == ============================================================================
+ == | WonderTek [ 网络无处不在，沟通及时到达 ]
+ == ============================================================================
+ == | Copyright (c) 2014, WonderTek, Inc. All Rights Reserved.
+ == ============================================================================
+ == | Author: xxxx <xxxx@xxxx.com>
+ == ============================================================================
+ == | Desc: 
+ == ============================================================================
+-->
+<root>
+    <header/>
+    <body resolution="640,1136" BuildChildrenFinished="bodyBuildChildrenFinished" OnSpriteEvent="bodyOnSpriteEvent" OnPluginEvent="bodyOnPluginEvent" transparent="true" >
+        <node name="mainNode" rect="0,0,640,1136" enable="true" active="true" OnKeyUp="mainNodeOnKeyUp" layouttype="1" extendstyle="1111">
+            <shadow  rect='0,0,640,1136' extendstyle='1111' color='#ffffff' alpha='255'/>
+            
+        </node>    
+        
+        <body rect='0,0,0' text=""  ></body>
+    </body>
+
+    <![CDATA[
+
+require 'com_listencp_client.common.framework'
+
+local rootSprite
+
+---------------------------------------callbacks--------------------------------
+-- @brief root子节点创建完事件
+function bodyBuildChildrenFinished(sprite)
+    rootSprite = sprite
+    
+end
+
+-- @brief root节点消息方法
+function bodyOnSpriteEvent(msg, param)
+    if msg == MSG_ACTIVATE then -- 页面激活
+     
+    else
+        Util:onSpriteEvent(msg, param,Alias.index)
+    end
+end
+
+-- @brief 插件消息方法
+function bodyOnPluginEvent(msg, param)
+    if msg == 101 then  --如今没有在用
+       
+    else
+        Util:onPluginEvent(msg, param)
+    end
+end
+
+-- @brief 按键响应处理 
+function mainNodeOnKeyUp(sprite, kc)
+    if kc == Key.F2 then -- 按下物理返回键
+        goBack()
+    end
+end
+
+function goBack()
+    
+end
+
+---------------------------------------util functions---------------------------
+
+
+    ]]\>
+</root>
+]]>
+	
+</content>
+	<tabTrigger>wdml</tabTrigger>
+	<scope>text.wdml &amp; (- meta.tag | punctuation.definition.tag.begin)</scope>
+</snippet>
