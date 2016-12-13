@@ -1,3 +1,4 @@
+# coding:utf-8
 import sublime, sublime_plugin
 import re
 
@@ -31,8 +32,8 @@ def get_tag_to_attributes():
         'radio' : ['text', 'h-align', 'v-align', 'color', 'normal', 'sel', 'checked', 'focus', 'disabled', 'sel-focus', 'checked-focus', 'checked-disabled', 'selected', 'silent', 'OnSelect', 'OnDbClick'],
         'calendar' : ['style', 'date', 'sunday', 'color', 'weekend-color', 'OnSelectChanged'],
         'chart1' : ['style', 'color', 'src', 'indicator', 'x-axis', 'y-axis', 'averageline', 'average-color', 'y-style', 'x-unit', 'y-unit', 'chart-data', 'axis-font-family', 'axis-font-size', 'axis-font-sytle', 'text-color', 'axis-text-color', 'axis-line-color', 'grid-line-color', 'grid-bg-color', 'axis-org', 'cell-bar', 'animate-delay', 'line-width', 'fill-alpha', 'OnChart1Touch'],
-        'chart1b' : ['mode-clip', 'mode-zip', 'color-normal', 'color-heilight', 'color-gray', 'img-normal', 'img-highlight', 'img-gray', 'img-indicator-top', 'img-indicator-bottom', 'img-clamp-left', 'img-clamp-right'， 'baseline', 'color-baseline', 'color-background', 'alpha-background', 'cell-bar', 'indicator-bar', 'clamp-size', 'touch-area', 'indicator-touch', 'OnChart1bTouch', 'OnChart1bClick'],
-        'clip' : ['start-angle', 'sweep-angle'];
+        'chart1b' : ['mode-clip', 'mode-zip', 'color-normal', 'color-heilight', 'color-gray', 'img-normal', 'img-highlight', 'img-gray', 'img-indicator-top','img-indicator-bottom', 'img-clamp-left', 'img-clamp-right', 'baseline', 'color-baseline', 'color-background', 'alpha-background', 'cell-bar', 'indicator-bar', 'clamp-size', 'touch-area', 'indicator-touch', 'OnChart1bTouch', 'OnChart1bClick'],
+        'clip' : ['start-angle', 'sweep-angle'],
         'combobox' : ['text', 'h-align', 'v-align', 'color', 'normal', 'sel', 'checked', 'focus', 'disabled', 'sel-focus', 'checked-focus', 'checked-disabled', 'selected', 'silent', 'OnSelect', 'OnDbClick', 'dragdown-rc', 'display-rc', 'selected', 'sort-style', 'scrollbar', 'OnSelectChanged'],
         'list-item' : ['defaultFocusName', 'sort', 'expand', 'float', 'poker', 'adjustbychild', 'drag', 'OnStatusChanged'],
         'combobox-item' : ['defaultFocusName', 'sort', 'expand', 'float', 'poker', 'adjustbychild', 'drag', 'OnStatusChanged', 'normal', 'sel', 'disp', 'src', 'style', 'text', 'h-aligh', 'v-aligh', 'color'],
@@ -177,7 +178,7 @@ class WDMLTagCompletions(sublime_plugin.EventListener):
         """
         default_list = []
         normal_tags = ([
-            
+            'demowhatneverused'
         ])
 
         for tag in normal_tags:
