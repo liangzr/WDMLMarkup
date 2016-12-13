@@ -178,7 +178,12 @@ class WDMLTagCompletions(sublime_plugin.EventListener):
         """
         default_list = []
         normal_tags = ([
-            'demowhatneverused'
+            'checkbox', 'radio', 'combobox-item', 'chart1b', 'group', 'combobox', 'window', 
+            'sub-item', 'animate-frame', 'globe-item', 'gauss', 'gf-item', 'edit', 'list', 
+            'chart1', 'list-item', 'scrollbar', 'lyric', 'listview', 'image-editor', 'datepicker', 
+            'coverflow-item', 'clip',  'tree', 'globe', 'surface', 'animate', 'calendar', 'canvas', 
+            'treeitem',  'gatefold', 'gallery-item', 'textedit', 'coverflowv-item', 'gallery', 
+            'coverflowv',  'coverflow', 'textarea', 'mazelock'
         ])
 
         for tag in normal_tags:
