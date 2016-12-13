@@ -177,49 +177,20 @@ class WDMLTagCompletions(sublime_plugin.EventListener):
         """
         default_list = []
         normal_tags = ([
-            'abbr', 'acronym', 'address', 'applet', 'article', 'aside',
-            'audio', 'b', 'basefont', 'bdi', 'bdo', 'big', 'blockquote',
-            'body', 'button', 'center', 'canvas', 'caption', 'cdata',
-            'cite', 'colgroup', 'code', 'content', 'data', 'datalist',
-            'dir', 'div', 'dd', 'del', 'details', 'dfn', 'dl', 'dt', 'element',
-            'em', 'embed', 'fieldset', 'figure', 'figcaption', 'font', 'footer',
-            'form', 'frame', 'frameset', 'head', 'header', 'h1', 'h2', 'h3',
-            'h4', 'h5', 'h6', 'i', 'ins', 'isindex', 'kbd', 'keygen',
-            'li', 'label', 'legend', 'main', 'map', 'mark', 'meter',
-            'nav', 'noframes', 'noscript', 'object', 'ol', 'optgroup',
-            'option', 'output', 'p', 'picture', 'pre', 'q', 'rp',
-            'rt', 'rtc', 'ruby', 's', 'samp', 'section', 'select', 'shadow',
-            'small', 'span', 'strong', 'sub', 'summary', 'sup',
-            'table', 'tbody', 'td', 'template', 'textarea', 'tfoot', 'th',
-            'thead', 'time', 'title', 'tr', 'tt', 'u', 'ul', 'var',
-            'video'
+            
         ])
 
         for tag in normal_tags:
             default_list.append(make_completion(tag))
-            default_list.append(make_completion(tag.upper()))
 
         default_list += ([
-            ('a\tTag', 'a href=\"$1\">$0</a>'),
-            ('area\tTag', 'area shape=\"$1\" coords=\"$2\" href=\"$3\">'),
-            ('audio\tTag', 'audio src=\"$1\">$0</audio>'),
-            ('base\tTag', 'base href=\"$1\">'),
-            ('br\tTag', 'br>'),
-            ('col\tTag', 'col>'),
-            ('hr\tTag', 'hr>'),
-            ('iframe\tTag', 'iframe src=\"$1\">$0</iframe>'),
-            ('input\tTag', 'input type=\"$1\" name=\"$2\">'),
-            ('img\tTag', 'img src=\"$1\">'),
-            ('link\tTag', 'link rel=\"stylesheet\" type=\"text/css\" href=\"$1\">'),
-            ('meta\tTag', 'meta ${1:charset=\"utf-8\"}>'),
-            ('param\tTag', 'param name=\"$1\" value=\"$2\">'),
-            ('progress\tTag', 'progress value=\"$1\" max=\"$2\">'),
-            ('script\tTag', 'script${2: type=\"${1:text/javascript}\"}>$0</script>'),
-            ('source\tTag', 'source src=\"$1\" type=\"$2\">'),
-            ('style\tTag', 'style type=\"${1:text/css}\">$0</style>'),
-            ('track\tTag', 'track kind=\"$1\" src=\"$2\">'),
-            ('wbr\tTag', 'wbr>'),
-            ('video\tTag', 'video src=\"$1\">$0</video>')
+            ('node\tTag', 'node name=\"$1\" rect=\"$2\" extendstyle=\"$3\">$4</node>'),
+            ('shadow\tTag', 'shadow name=\"$1\" rect=\"$2\" extendstyle=\"$3\" alpha=\"$4\" color=\"$5\">&6</shadow>'),
+            ('image\tTag', 'image name=\"$1\" rect=\"$2\" extendstyle=\"$3\" style=\"autosize$4\" src=\"$5\" />'),
+            ('button\tTag', 'button name=\"$1\" rect=\"$2\" extendstyle=\"$3\" OnSelect=\"$4\">$5</button>'),
+            ('label\tTag', 'label rect=\"$1\" extendstyle=\"$2\" text=\"$3\" font-size=\"$4\" v-align=\"center$5\" h-align=\"center$6\" color=\"#FFFFFF$7\" />'),
+            ('panorama\tTag', 'panorama name=\"$1\" rect=\"$2\" extendstyle=\"$3\">$4</panorama>'),
+            ('panoramaitem\tTag', 'panoramaitem name=\"$1\" rect=\"$2\" extendstyle=\"$3\" OnSelect=\"$4\">$5</panoramaitem>')
         ])
 
         return default_list
