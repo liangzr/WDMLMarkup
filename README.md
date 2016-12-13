@@ -9,12 +9,12 @@ Fell free to let me know what else you want added via:
 
 ## What's included - contents
 
-- [Installation](#Installation)
-- [Usage](#Usage)
-- [Component](#Component)
-- [Snippet](#Snippet)
-- [Dependency](#Dependency)
-- [License](#License)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Component](#component)
+- [Snippet](#snippet)
+- [Dependency](#dependency)
+- [License](#license)
 
 ### Installation
 
