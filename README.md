@@ -107,6 +107,10 @@ open your project in Sublime Text 3 and select a `.wdml` file, change your `Lang
 | keyword | description           |
 | :------ | :-------------------- |
 | wdml    | a basic wdml templete |
+| bri | add comments |
+| logs | print string log |
+| logv | print value log with string |
+| newb | add a seprate line for new block |
 
 ### Dependency
 
