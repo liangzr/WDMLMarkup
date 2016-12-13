@@ -1,0 +1,7 @@
+<snippet>
+	<content><![CDATA[--------------------------------------- $1 ---------------------------------------
+		]]></content>
+	<tabTrigger>newb</tabTrigger>
+	<scope>source.lua</scope>
+	<description>add a seprate line for new block</description>
+</snippet>

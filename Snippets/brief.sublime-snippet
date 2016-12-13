@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[-- @brief $1 ]]></content>
+	<tabTrigger>bri</tabTrigger>
+	<scope>source.lua</scope>
+	<description>-- @brief add comments </description>
+</snippet>
