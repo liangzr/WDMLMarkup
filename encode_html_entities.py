@@ -1,7 +1,7 @@
 import sublime
 import sublime_plugin
 
-from wdml.entities import codepoint2name as cp2n
+from html.entities import codepoint2name as cp2n
 
 class EncodeWdmlEntities(sublime_plugin.TextCommand):
     def run(self, edit, **args):

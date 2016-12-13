@@ -77,12 +77,12 @@ class WDMLTagCompletions(sublime_plugin.EventListener):
 
     def on_query_completions(self, view, prefix, locations):
         # Only trigger within WDML
-        if not view.match_selector(locations[0], "text.WDML - source - string.quoted"):
+        if not view.match_selector(locations[0], "text.wdml - source - string.quoted"):
             return []
 
         # check if we are inside a tag
         is_inside_tag = view.match_selector(locations[0],
-                "text.WDML meta.tag - text.WDML punctuation.definition.tag.begin")
+                "text.wdml meta.tag - text.wdml punctuation.definition.tag.begin")
 
         return self.get_completions(view, prefix, locations, is_inside_tag)
 
@@ -130,6 +130,7 @@ class WDMLTagCompletions(sublime_plugin.EventListener):
 
     def default_completion_list(self):
         """
+
         Generate a default completion list for WDML
         """
         default_list = []
@@ -275,7 +276,7 @@ class WDMLTagCompletions(sublime_plugin.EventListener):
 
 # unit testing
 # to run it in sublime text:
-# import WDML.WDML_completions
+# import wdml-.WDML_completions
 # WDML.WDML_completions.Unittest.run()
 
 import unittest
