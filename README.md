@@ -22,7 +22,7 @@ Fell free to let me know what else you want added via:
 Download `zip` file or clone to your disk.
 
 ```
-git clone https://github.com/liangzr/wdml-markup.git
+git clone https://github.com/liangzr/WDMLMarkup.git
 ```
 ##### Step 2
 Move package to Sublime Text 3's Package folder
