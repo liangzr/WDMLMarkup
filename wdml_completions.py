@@ -186,7 +186,7 @@ class WDMLTagCompletions(sublime_plugin.EventListener):
 
         default_list += ([
             ('node\tTag', 'node name=\"$1\" rect=\"$2\" extendstyle=\"$3\">$0</node>'),
-            ('shadow\tTag', 'shadow name=\"$1\" rect=\"$2\" extendstyle=\"$3\" alpha=\"$4\" color=\"$5\">&0</shadow>'),
+            ('shadow\tTag', 'shadow name=\"$1\" rect=\"$2\" extendstyle=\"$3\" alpha=\"$4\" color=\"$5\">$0</shadow>'),
             ('image\tTag', 'image name=\"$1\" rect=\"$2\" extendstyle=\"$3\" style=\"autosize$4\" src=\"$5\" />'),
             ('button\tTag', 'button name=\"$1\" rect=\"$2\" extendstyle=\"$3\" OnSelect=\"$4\">$0</button>'),
             ('label\tTag', 'label rect=\"$1\" extendstyle=\"$2\" text=\"$3\" font-size=\"$4\" v-align=\"center$5\" h-align=\"center$6\" color=\"#FFFFFF$7\" />'),
