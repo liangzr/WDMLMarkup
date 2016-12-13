@@ -18,7 +18,7 @@
     <body resolution="640,1136" BuildChildrenFinished="bodyBuildChildrenFinished" OnSpriteEvent="bodyOnSpriteEvent" OnPluginEvent="bodyOnPluginEvent" transparent="true" >
         <node name="mainNode" rect="0,0,640,1136" enable="true" active="true" OnKeyUp="mainNodeOnKeyUp" layouttype="1" extendstyle="1111">
             <shadow  rect='0,0,640,1136' extendstyle='1111' color='#ffffff' alpha='255'/>
-            $2
+            $0
         </node>    
     </body>
 

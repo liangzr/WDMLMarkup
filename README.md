@@ -39,6 +39,8 @@ open your project in Sublime Text 3 and select a `.wdml` file, change your `Lang
 
 ### Component
 
+##### General Tag
+
 | keyword         | properties                               |
 | :-------------- | :--------------------------------------- |
 | node | name, rect, visible, active, enable, mushroom, autofocus, frame, transparent, layouttype, border, top-float, data, class, font-family, font-size, font-style, font-auto, css, critical-sertion, resolution, extendstyle, margin, box, type, grid-col, padding, scroll, scrollbar\_body, scrollbar\_slider, PreBuildChildren, BuildChildrenFinished, PrePropertySetting, PropertySettingFinished, OnKeyDown, OnKeyUp, OnKeyLongPress, OnMouseDown, OnMouseLongPress, OnGestureBegin, OnGestureMove, OnGestureEnd, OnDualDown, OnDualUp, OnDualMove, OnTouchEvent, OnGestureSingleLeft, OnGestureDoubleRight, OnTick, OnSetFocus, OnLostFocus, OnSetEnable, OnSetVisible, OnSetActive, OnSpriteEvent, OnPluginEvent |
@@ -88,6 +90,17 @@ open your project in Sublime Text 3 and select a `.wdml` file, change your `Lang
 | mazelock | cell-default, cell-highlight, cell-margin, cell-size, band-color, band-alpha, band-width, touch-area, visit, OnComplete |
 | panorama | background, sort, foreground, navigation\_auto, style, alpha, pos, OnMovePanorama, OnTrail, OnHead, OnJoinItem |
 
+##### Fast Completion List
+
+| tag | 
+|:---|
+| node |
+| shadow |
+| image |
+| button |
+| label |
+| panorama |
+| panoramaitem |
 
 ### Snippet
 
