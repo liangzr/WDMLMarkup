@@ -1,0 +1,44 @@
+[
+    {
+        "caption": "Preferences",
+        "id": "preferences",
+        "children": [
+            {
+                "caption": "Package Settings",
+                "id": "package-settings",
+                "children": [
+                    {
+                        "caption": "WDMLMarkup",
+                        "id": "WDML_Markup",
+                        "children": [
+                            {
+                                "command": "open_file",
+                                "args": {
+                                    "file": "${packages}/WDMLMarkup/README.md"
+                                },
+                                "caption": "Readme"
+                            },
+                            {
+                                "caption": "-"
+                            },
+                            {
+                                "command": "open_file",
+                                "args": {
+                                    "file": "${packages}/WDMLMarkup/WDMLMarkup.sublime-settings"
+                                },
+                                "caption": "Settings - Default"
+                            },
+                            {
+                                "command": "open_file",
+                                "args": {
+                                    "file": "${packages}/User/WDMLMarkup.sublime-settings"
+                                },
+                                "caption": "Settings - User"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
