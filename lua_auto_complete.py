@@ -28,6 +28,10 @@ class LuaAutoComplete(sublime_plugin.EventListener):
         if self.b_first_edit or self.b_fully_loaded:
             self.b_fully_loaded = False
             sublime.set_timeout(lambda: self.load_completions(view), 3)
+    def on_activated(self, view):
+        if self.b_first_edit or self.b_fully_loaded:
+            self.b_fully_loaded = False
+            sublime.set_timeout(lambda: self.load_completions(view), 3)
 
     def load_completions(self, view):
         scope_name = view.scope_name(view.sel()[0].begin())       # sublime.windows()[0].active_view()
@@ -44,6 +48,7 @@ class LuaAutoComplete(sublime_plugin.EventListener):
             self.word_list = scan_folders(self.path_list)
             self.b_fully_loaded = True
         else:
+            print("no trigger")
             self.b_fully_loaded = True
 
     # This will return all words found in the dictionary.
