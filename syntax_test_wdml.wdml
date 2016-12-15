@@ -65,27 +65,21 @@ function bodyPreBuildChildren()
     System:setFontSize()
     Ulog
 end
+
 function addBtnOnSelect(sprite)
     Sprite:killFocus(sprite)
     Sprite:releaseCapture(sprite)
-
     if #downloadSamples > 0 then
         Download:append(downloadSamples[#downloadSamples].path, downloadSamples[#downloadSamples].name, downloadSamples[#downloadSamples].url)
         table.remove(downloadSamples)
-        Sprite:isEnable(sprite)
-        Sprite:Isenable(Sprite)
-        Util:spriteWindow_Open(sprite)
-        Sprite:Isenable(Sprite)
     else
         Dialog:show('11', '11', 'ok')
     end
     downloadInit()
-    Auth:Subscribe(Usertoken,Devid,Appid,Appsecret,Productid,Contentid,Purchasetype,Partner,Seller,Notify_Url)
 end
 
 -- @brief 暂停按钮
 function pauseBtnOnSelect(sprite)
-    Sprite:Setenable(Sprite, Benable)
     Sprite:killFocus(sprite)
     Sprite:releaseCapture(sprite)
     Sprite:releaseCapture(sprite)
@@ -103,17 +97,7 @@ function continueBtnOnSelect(sprite)
     local index = ListView:getItemIndex(item)
     Download:start(index + 1)
 end
-Alipay:setListen(
-Alipay:setListen(callback
-Alipay:setListen(${1:callback}
-    Util:goPlay(playUrlobjType )
-    Alipay:setListen(fdsf)
-    Util:httpRequestParamsFormat( requestData )
-    MiguSDK:queryPolicy(commonInfo, commonInfo, commonInfo)
-    MiguSDK:queryPolicy(f, f, f)
-    BLMigu:setListen(callback)
-    MiguSDK:queryPolicy(commonInfopayInfosqueryPolicyCallback)
-MiguSDK:queryPolicy(commonInfo, payInfos, queryPolicyCallback, )
+
 -- @brief 删除按钮
 function deleteBtnOnSelect(sprite)
     Sprite:killFocus(sprite)

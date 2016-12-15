@@ -1,8 +1,6 @@
 {
 	// default libraries
 	"default_library_path":[
-		"D:\\bin\\module\\com_listencp_client",
-		"D:\\bin\\framework"
 	],
 	// load opened folders, set "true" to enable.
 	"load_opened_folder": "false"

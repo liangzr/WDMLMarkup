@@ -53,6 +53,8 @@ class LuaAutoComplete(sublime_plugin.EventListener):
         # filter relevant items:
         for w in self.word_list:
             try:
+                if word[0].islower():
+                    return autocomplete_list
                 if word.lower() in w.lower():
                     W = self.init_cursor(w)
                     autocomplete_list.append((w, W))
