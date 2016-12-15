@@ -15,6 +15,7 @@ from WDMLMarkup.scanner import scan_folders
 ST3 = int(sublime.version()) > 3000
 
 import os
+import re
 
 class LuaAutoComplete(sublime_plugin.EventListener):
     b_first_edit = True
@@ -53,17 +54,29 @@ class LuaAutoComplete(sublime_plugin.EventListener):
         for w in self.word_list:
             try:
                 if word.lower() in w.lower():
-                    if len(word) > 0 and word[0].isupper():
-                        W = w.title()
-                        autocomplete_list.append((W, W))
-                    else:
-                        autocomplete_list.append((w, w))
+                    W = self.init_cursor(w)
+                    autocomplete_list.append((w, W))
             except UnicodeDecodeError:
                 print(w)
                 # autocomplete_list.append((w, w))
                 continue
 
         return autocomplete_list
+
+    def init_cursor(self, word):
+    # return re.sub(r'(\w+)([,\)])', r'${:\1}\2', word)
+        func_body = re.split(r'\s*[,\(\)]\s*', word)
+        index = 0
+        new_word = ""
+        for item in func_body:
+            if index == 0:  
+                new_word = item + "("
+            elif item == "":
+                new_word = new_word[:-2] + ")"
+            else:
+                new_word += "${" + str(index) + ":" + item + "}, "
+            index += 1
+        return new_word
 
     def should_trigger(self, scope):
         print(scope)

@@ -46,7 +46,7 @@ def handle_files(path):
             with open(path, 'r', encoding="utf-8") as f:
                 rootList.extend(p_func.findall(f.read()))
         except Exception as e:
-            print("■■■■■■■ decodeError")
+            print("■■■■■■■ decodeError" + path)
 
 # 判断后缀
 def suffix_judge(path):
