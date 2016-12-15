@@ -2,5 +2,5 @@
 	<content><![CDATA[Util:logwrite("■■■■■■■■■■■■■■■■ $1 ■■", $2)]]></content>
 	<tabTrigger>logv</tabTrigger>
 	<scope>source.lua</scope>
-	<description>print value log with string</description>
+	<description>print value log</description>
 </snippet>

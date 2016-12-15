@@ -192,9 +192,9 @@ class WDMLTagCompletions(sublime_plugin.EventListener):
         default_list += ([
             ('node\tTag', 'node name=\"$1\" rect=\"$2\" extendstyle=\"$3\">$0</node>'),
             ('shadow\tTag', 'shadow name=\"$1\" rect=\"$2\" extendstyle=\"$3\" alpha=\"$4\" color=\"$5\">$0</shadow>'),
-            ('image\tTag', 'image name=\"$1\" rect=\"$2\" extendstyle=\"$3\" style=\"autosize$4\" src=\"$5\" />'),
+            ('image\tTag', 'image name=\"$1\" rect=\"$2\" extendstyle=\"$3\" style=\"${4:autosize}\" src=\"$5\" />'),
             ('button\tTag', 'button name=\"$1\" rect=\"$2\" extendstyle=\"$3\" OnSelect=\"$4\">$0</button>'),
-            ('label\tTag', 'label rect=\"$1\" extendstyle=\"$2\" text=\"$3\" font-size=\"$4\" v-align=\"center$5\" h-align=\"center$6\" color=\"#FFFFFF$7\" />'),
+            ('label\tTag', 'label rect=\"$1\" extendstyle=\"$2\" text=\"$3\" font-size=\"$4\" v-align=\"${5:center}\" h-align=\"${6:center}\" color=\"${7:#FFFFFF}\" />'),
             ('panorama\tTag', 'panorama name=\"$1\" rect=\"$2\" extendstyle=\"$3\">$0</panorama>'),
             ('panoramaitem\tTag', 'panoramaitem name=\"$1\" rect=\"$2\" extendstyle=\"$3\" OnSelect=\"$4\">$0</panoramaitem>')
         ])
