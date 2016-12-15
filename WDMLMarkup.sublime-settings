@@ -3,5 +3,6 @@
 	"default_library_path":[
 	],
 	// load opened folders, set "true" to enable.
+	// warnning: if you opened a folder that have many files, Sublime Text 3 maybe stuck in index!
 	"load_opened_folder": "false"
 }

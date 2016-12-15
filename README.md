@@ -24,6 +24,7 @@ Download `zip` file or clone to your disk.
 ```
 git clone https://github.com/liangzr/WDMLMarkup.git
 ```
+
 ##### Step 2
 Move package to Sublime Text 3's Package folder
 
@@ -35,7 +36,20 @@ C:\Users\<USER NAME>\AppData\Roaming\Sublime Text 3\Packages\
 
 ### Usage
 
-open your project in Sublime Text 3 and select a `.wdml` file, change your `Language Syntax` to `WDML` at lower right corner.
+Configure you libraries at  `Preferences -> Package Settings -> WDMLMarkup -> Setting - User `
+
+```
+{
+	// default libraries
+	"default\_library\_path":[
+		"D:\\bin\\module\\com\_listencp\_client",
+		"D:\\bin\\framework"
+	],
+	// load opened folders, set "true" to enable.
+	// warnning: if you opened a folder that have many files, Sublime Text 3 maybe stuck in index!
+	"load\_opened\_folder": "false"
+}
+```
 
 ### Component
 
@@ -109,7 +123,7 @@ open your project in Sublime Text 3 and select a `.wdml` file, change your `Lang
 | wdml    | a basic wdml templete |
 | bri | add comments |
 | logs | print string log |
-| logv | print value log with string |
+| logv | print value log |
 | newb | add a seprate line for new block |
 
 ### Dependency
