@@ -7,6 +7,11 @@ Fell free to let me know what else you want added via:
 - Email : liangzr@outlook.com
 - [Issues](https://github.com/liangzr/wdml-markup/issues)
 
+## Feature
+
+- wdml tag auto-complete with properties
+- lua apis auto-complete
+
 ## What's included - contents
 
 - [Installation](#installation)
