@@ -1,5 +1,5 @@
 <snippet>
-	<content><![CDATA[Util:logwrite("■■■■■■■■ $1 ■■■■■■■■")]]></content>
+	<content><![CDATA[Log:write("■■■■■■■■ $1 ■■■■■■■■")]]></content>
 	<tabTrigger>logs</tabTrigger>
 	<scope>source.lua</scope>
 	<description>print string log</description>

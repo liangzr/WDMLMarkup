@@ -72,15 +72,18 @@ class LuaAutoComplete(sublime_plugin.EventListener):
 
     def init_cursor(self, word):
     # return re.sub(r'(\w+)([,\)])', r'${:\1}\2', word)
-        func_body = re.split(r'\s*[,\(\)]\s*', word)
+        func_body = re.split(r'\s*[,\(\)]\s*', word) # 分享函数名和变量
         index = 0
         new_word = ""
         for item in func_body:
-            if index == 0:  
+            if index == 0:  # 如果为 0 代表当前为函数名
                 new_word = item + "("
-            elif item == "":
+            elif item == "": # 如果为空，代表为最后一个或者无参数
+                if index == 1: # 无参数，直接返回
+                    new_word += ")"
+                    return new_word
                 new_word = new_word[:-2] + ")"
-            else:
+            else: 
                 new_word += "${" + str(index) + ":" + item + "}, "
             index += 1
         return new_word
